@@ -10,6 +10,7 @@ const SignUp = () => {
   const [Birthday, setBirthday] = useState("");
   const [Sex, setSex] = useState("");
   const [AgreeService, setAgreeeService] = useState(false);
+  const [checkEmail, setCheckEmail] = useState(false);
 
   const onNicknameHandler = (e) => {
     setNickname(e.currentTarget.value);
@@ -45,6 +46,25 @@ const SignUp = () => {
     setAgreeeService(!AgreeService);
   };
 
+  const isAllowEmail = (e) => {
+    const regex = new RegExp("@");
+    e.preventDefault();
+    if (regex.test(Email)) {
+      setCheckEmail(false);
+    } else {
+      setCheckEmail(true);
+    }
+  };
+
+  const checkOnlyOne = (nowCheck) => {
+    const checkboxes = document.getElementsByName("sex");
+    checkboxes.forEach((v, i) => {
+      if (v["defaultValue"] !== nowCheck.value) {
+        checkboxes[i].checked = false;
+      }
+    });
+  };
+
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (Pwd !== CheckPwd)
@@ -66,15 +86,6 @@ const SignUp = () => {
     console.log(body);
   };
 
-  const checkOnlyOne = (nowCheck) => {
-    const checkboxes = document.getElementsByName("sex");
-    checkboxes.forEach((v, i) => {
-      if (v["defaultValue"] !== nowCheck.value) {
-        checkboxes[i].checked = false;
-      }
-    });
-  };
-
   return (
     <>
       <div
@@ -86,27 +97,36 @@ const SignUp = () => {
           height: "100vh",
         }}
       >
-        <form
-          style={{ display: "flex", flexDirection: "column" }}
-          onSubmit={onSubmitHandler}
-        >
+        <form style={{ display: "flex", flexDirection: "column" }}>
           <div>
             <label>닉네임</label>
-            <input value={Nickname} onChange={onNicknameHandler} />
+            <input
+              value={Nickname}
+              onChange={onNicknameHandler}
+              placeholder="2자리 ~ 8자리"
+            />
           </div>
           <div>
             <label>아이디</label>
-            <input value={Id} onChange={onIdHandler} />
+            <input
+              value={Id}
+              onChange={onIdHandler}
+              placeholder="영문 6자리 ~ 12자리"
+            />
           </div>
           <div>
             <label>비밀번호</label>
-            <input value={Pwd} onChange={onPwdHandler} />
+            <input
+              value={Pwd}
+              onChange={onPwdHandler}
+              placeholder="비밀번호를 8자리 이상 입력해주세요."
+            />
           </div>
           <div>
             <label>비밀번호 확인</label>
             <input value={CheckPwd} onChange={onCheckPwdHandler} />
             {!Ismatch ? (
-              <p style={{ fontSize: "12px", color: "red" }}>
+              <p style={{ fontSize: "12px", color: "red", display: "inline" }}>
                 비밀번호가 서로 일치하지 않습니다.
               </p>
             ) : (
@@ -116,6 +136,16 @@ const SignUp = () => {
           <div>
             <label>이메일</label>
             <input value={Email} onChange={onEmailHandler} />
+            <button onClick={isAllowEmail}>이메일 확인</button>
+            {checkEmail ? (
+              <p style={{ fontSize: "12px", color: "red", display: "inline" }}>
+                사용할 수 없는 이메일입니다.
+              </p>
+            ) : (
+              <p style={{ fontSize: "12px", color: "blue", display: "inline" }}>
+                사용할 수 있는 이메일 입니다.
+              </p>
+            )}
           </div>
           <div>
             <label>생년월일</label>
@@ -160,7 +190,9 @@ const SignUp = () => {
             />
           </div>
           <div>
-            <button style={{ cursor: "pointer" }}>회원가입 하기</button>
+            <button style={{ cursor: "pointer" }} onClick={onSubmitHandler}>
+              회원가입 하기
+            </button>
           </div>
         </form>
       </div>
