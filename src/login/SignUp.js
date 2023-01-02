@@ -4,6 +4,7 @@ const SignUp = () => {
   const [Nickname, setNickname] = useState("");
   const [Id, setId] = useState("");
   const [Pwd, setPwd] = useState("");
+  const [Ismatch, setIsmatch] = useState(true);
   const [CheckPwd, setCheckPwd] = useState("");
   const [Email, setEmail] = useState("");
   const [Birthday, setBirthday] = useState("");
@@ -21,6 +22,11 @@ const SignUp = () => {
   };
   const onCheckPwdHandler = (e) => {
     setCheckPwd(e.currentTarget.value);
+    if (e.currentTarget.value.length === 0 || e.currentTarget.value === Pwd) {
+      setIsmatch(true);
+    } else {
+      setIsmatch(false);
+    }
   };
 
   const onEmailHandler = (e) => {
@@ -41,15 +47,13 @@ const SignUp = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    if (Pwd !== CheckPwd) {
+    if (Pwd !== CheckPwd)
       return alert(
         "입력하신 비밀번호와 비밀번호 확인이 서로 일치하지 않습니다."
       );
-    }
 
-    if (!AgreeService) {
+    if (!AgreeService)
       return alert("이용 약관에 동의해주셔야 회원가입이 가능합니다.");
-    }
 
     const body = {
       nickname: Nickname,
@@ -88,57 +92,59 @@ const SignUp = () => {
         >
           <div>
             <label>닉네임</label>
-            <input
-              type="nickname"
-              value={Nickname}
-              onChange={onNicknameHandler}
-            />
+            <input value={Nickname} onChange={onNicknameHandler} />
           </div>
           <div>
             <label>아이디</label>
-            <input type="Id" value={Id} onChange={onIdHandler} />
+            <input value={Id} onChange={onIdHandler} />
           </div>
           <div>
             <label>비밀번호</label>
-            <input type="pwd" value={Pwd} onChange={onPwdHandler} />
+            <input value={Pwd} onChange={onPwdHandler} />
           </div>
           <div>
             <label>비밀번호 확인</label>
-            <input
-              type="checkPwd"
-              value={CheckPwd}
-              onChange={onCheckPwdHandler}
-            />
+            <input value={CheckPwd} onChange={onCheckPwdHandler} />
+            {!Ismatch ? (
+              <p style={{ fontSize: "12px", color: "red" }}>
+                비밀번호가 서로 일치하지 않습니다.
+              </p>
+            ) : (
+              ""
+            )}
           </div>
           <div>
             <label>이메일</label>
-            <input type="email" value={Email} onChange={onEmailHandler} />
+            <input value={Email} onChange={onEmailHandler} />
           </div>
           <div>
             <label>생년월일</label>
             <input
               type="birthday"
-              value={Birthday}
+              placeholder="YYMMDD 주민등록번호 앞 6자리"
+              maxLength={6}
               onChange={onBirthdayHandler}
             />
           </div>
           <div>
-            <label>성별</label>
+            <label style={{ paddingRight: "10px" }}>성별</label>
+            <label>남자</label>
             <input
               style={{ cursor: "pointer" }}
               name="sex"
               type="checkbox"
-              value="남성"
+              value="남자"
               onChange={(e) => {
                 checkOnlyOne(e.target);
                 onSexHandler(e);
               }}
             />
+            <label>여자</label>
             <input
               style={{ cursor: "pointer" }}
               name="sex"
               type="checkbox"
-              value="여성"
+              value="여자"
               onChange={(e) => {
                 checkOnlyOne(e.target);
                 onSexHandler(e);
@@ -147,7 +153,11 @@ const SignUp = () => {
           </div>
           <div>
             <label>이용약관 동의</label>
-            <input type="checkbox" onChange={onAgreeeServiceHandler} />
+            <input
+              style={{ cursor: "pointer" }}
+              type="checkbox"
+              onChange={onAgreeeServiceHandler}
+            />
           </div>
           <div>
             <button style={{ cursor: "pointer" }}>회원가입 하기</button>
