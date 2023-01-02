@@ -8,7 +8,7 @@ const SignUp = () => {
   const [Email, setEmail] = useState("");
   const [Birthday, setBirthday] = useState("");
   const [Sex, setSex] = useState("");
-  const [AgreeService, setAgreeeService] = useState("");
+  const [AgreeService, setAgreeeService] = useState(false);
 
   const onNicknameHandler = (e) => {
     setNickname(e.currentTarget.value);
@@ -35,14 +35,16 @@ const SignUp = () => {
     setSex(e.currentTarget.value);
   };
 
-  const onAgreeeServiceHandler = (e) => {
-    setAgreeeService(e.currentTarget.value);
+  const onAgreeeServiceHandler = () => {
+    setAgreeeService(!AgreeService);
   };
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (Pwd !== CheckPwd) {
-      alert("입력하신 비밀번호와 비밀번호 확인이 서로 일치하지 않습니다.");
+      return alert(
+        "입력하신 비밀번호와 비밀번호 확인이 서로 일치하지 않습니다."
+      );
     }
 
     const body = {
@@ -54,6 +56,15 @@ const SignUp = () => {
       sex: Sex,
     };
     console.log(body);
+  };
+
+  const checkOnlyOne = (nowCheck) => {
+    const checkboxes = document.getElementsByName("sex");
+    checkboxes.forEach((v, i) => {
+      if (v["defaultValue"] !== nowCheck.value) {
+        checkboxes[i].checked = false;
+      }
+    });
   };
 
   return (
@@ -109,18 +120,33 @@ const SignUp = () => {
           </div>
           <div>
             <label>성별</label>
-            <input type="sex" value={Sex} onChange={onSexHandler} />
-          </div>
-          <div>
-            <label>이용약관 동의</label>
             <input
+              style={{ cursor: "pointer" }}
+              name="sex"
               type="checkbox"
-              value={AgreeService}
-              onChange={onAgreeeServiceHandler}
+              value="남성"
+              onChange={(e) => {
+                checkOnlyOne(e.target);
+                onSexHandler(e);
+              }}
+            />
+            <input
+              style={{ cursor: "pointer" }}
+              name="sex"
+              type="checkbox"
+              value="여성"
+              onChange={(e) => {
+                checkOnlyOne(e.target);
+                onSexHandler(e);
+              }}
             />
           </div>
           <div>
-            <button>회원가입 하기</button>
+            <label>이용약관 동의</label>
+            <input type="checkbox" onChange={onAgreeeServiceHandler} />
+          </div>
+          <div>
+            <button style={{ cursor: "pointer" }}>회원가입 하기</button>
           </div>
         </form>
       </div>
