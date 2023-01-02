@@ -47,6 +47,10 @@ const SignUp = () => {
       );
     }
 
+    if (!AgreeService) {
+      return alert("이용 약관에 동의해주셔야 회원가입이 가능합니다.");
+    }
+
     const body = {
       nickname: Nickname,
       id: Id,
