@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Language from "./Language";
 
 const Information = () => {
   const [graduate, setGraduate] = useState("");
@@ -7,7 +8,6 @@ const Information = () => {
   const [major, setMajor] = useState("");
   const [score, setScore] = useState("");
   const [job, setJob] = useState("");
-  const [language, setLanguage] = useState("");
   const [activity, setActivity] = useState("");
   const [award, setAward] = useState("");
 
@@ -29,10 +29,6 @@ const Information = () => {
 
   const onJobHandler = (e) => {
     setJob(e.currentTarget.value);
-  };
-
-  const onLanguageHandler = (e) => {
-    setLanguage(e.currentTarget.value);
   };
 
   const onActivityHandler = (e) => {
@@ -107,37 +103,7 @@ const Information = () => {
             <label>직무</label>
             <input value={job} onChange={onJobHandler} placeholder="직무명" />
           </div>
-          <div>
-            <label>어학</label>
-            <select onChange={onGratudateHandler}>
-              <option selected value={""}>
-                구분
-              </option>
-              <option>
-                <p value="EducationCaseA">토익</p>
-              </option>
-              <option value={"EducationCaseB"}>토스</option>
-              <option value={"EducationCaseC"}>텝스</option>
-            </select>
-            <input
-              value={school}
-              onChange={onSchoolHandler}
-              placeholder="학교명"
-            />
-          </div>
-          <div>
-            <input
-              value={major}
-              onChange={onMajorHandler}
-              placeholder="전공명"
-            />
-            <input
-              value={score}
-              onChange={onScoreHandler}
-              maxLength={4}
-              placeholder="학점"
-            />
-          </div>
+          <Language />
           <div>
             <label>인턴 / 대외활동</label>
             <input value={activity} onChange={onActivityHandler} />

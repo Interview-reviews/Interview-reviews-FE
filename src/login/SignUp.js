@@ -98,8 +98,8 @@ const SignUp = () => {
       return false;
     }
 
-    if (pwd.length < 8) {
-      alert("비밀번호를 8자리 이상 입력해주세요.");
+    if (pwd.length < 8 || pwd.length > 20) {
+      alert("비밀번호를 8자리 이상 20자리 이내로 입력해주세요.");
       return false;
     }
 
@@ -113,6 +113,11 @@ const SignUp = () => {
       return false;
     }
 
+    return true;
+  };
+
+  const infoHandler = (e) => {
+    e.preventDefault();
     const body = {
       Nickname: nickname,
       Id: id,
@@ -122,7 +127,6 @@ const SignUp = () => {
       Sex: sex,
     };
     console.log(body);
-    return true;
   };
 
   return (
@@ -158,7 +162,7 @@ const SignUp = () => {
             <input
               value={pwd}
               onChange={onPwdHandler}
-              placeholder="비밀번호를 8자리 이상 입력해주세요."
+              placeholder="비밀번호를 8자리 이상 20자리 이내로 설정해주세요."
             />
           </div>
           <div>
@@ -239,6 +243,7 @@ const SignUp = () => {
               다음
             </Link>
           </div>
+          <button onClick={infoHandler}>테스트 버튼</button>
         </form>
       </div>
     </>
