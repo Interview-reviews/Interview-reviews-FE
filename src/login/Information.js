@@ -74,7 +74,7 @@ const Information = () => {
             <label>학력</label>
             <select onChange={onGratudateHandler}>
               <option selected value={""}>
-                대학 구분
+                학교 구분
               </option>
               <option>
                 <p value="EducationCaseA">고등학교 졸업</p>
@@ -109,10 +109,33 @@ const Information = () => {
           </div>
           <div>
             <label>어학</label>
+            <select onChange={onGratudateHandler}>
+              <option selected value={""}>
+                구분
+              </option>
+              <option>
+                <p value="EducationCaseA">토익</p>
+              </option>
+              <option value={"EducationCaseB"}>토스</option>
+              <option value={"EducationCaseC"}>텝스</option>
+            </select>
             <input
-              value={language}
-              onChange={onLanguageHandler}
-              placeholder="비밀번호를 8자리 이상 입력해주세요."
+              value={school}
+              onChange={onSchoolHandler}
+              placeholder="학교명"
+            />
+          </div>
+          <div>
+            <input
+              value={major}
+              onChange={onMajorHandler}
+              placeholder="전공명"
+            />
+            <input
+              value={score}
+              onChange={onScoreHandler}
+              maxLength={4}
+              placeholder="학점"
             />
           </div>
           <div>

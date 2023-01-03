@@ -2,15 +2,15 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
-  const [Nickname, setNickname] = useState("");
-  const [Id, setId] = useState("");
-  const [Pwd, setPwd] = useState("");
-  const [Ismatch, setIsmatch] = useState(true);
-  const [CheckPwd, setCheckPwd] = useState("");
-  const [Email, setEmail] = useState("");
-  const [Birthday, setBirthday] = useState("");
-  const [Sex, setSex] = useState("");
-  const [AgreeService, setAgreeeService] = useState(false);
+  const [nickname, setNickname] = useState("");
+  const [id, setId] = useState("");
+  const [pwd, setPwd] = useState("");
+  const [ismatch, setIsmatch] = useState(true);
+  const [checkPwd, setCheckPwd] = useState("");
+  const [email, setEmail] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const [sex, setSex] = useState("");
+  const [agreeService, setAgreeeService] = useState(false);
   const [checkEmail, setCheckEmail] = useState("");
 
   const onNicknameHandler = (e) => {
@@ -24,7 +24,7 @@ const SignUp = () => {
   };
   const onCheckPwdHandler = (e) => {
     setCheckPwd(e.currentTarget.value);
-    if (e.currentTarget.value.length === 0 || e.currentTarget.value === Pwd) {
+    if (e.currentTarget.value.length === 0 || e.currentTarget.value === pwd) {
       setIsmatch(true);
     } else {
       setIsmatch(false);
@@ -44,16 +44,16 @@ const SignUp = () => {
   };
 
   const onAgreeeServiceHandler = () => {
-    setAgreeeService(!AgreeService);
+    setAgreeeService(!agreeService);
   };
 
   const isAllowEmail = (e) => {
     const regex = /@/ && /.com/;
     e.preventDefault();
-    if (regex.test(Email)) {
-      setCheckEmail(false);
-    } else {
+    if (regex.test(email)) {
       setCheckEmail(true);
+    } else {
+      setCheckEmail(false);
     }
   };
 
@@ -66,27 +66,60 @@ const SignUp = () => {
     });
   };
 
-  const nextHandler = (e) => {
-    if (!onSubmitHandler) e.preventDefault();
+  const isAllowNext = (e) => {
+    if (!onSubmitHandler()) e.preventDefault();
   };
 
   const onSubmitHandler = (e) => {
-    e.preventDefault();
-    if (Pwd !== CheckPwd)
-      return alert(
-        "입력하신 비밀번호와 비밀번호 확인이 서로 일치하지 않습니다."
-      );
+    if (
+      nickname === "" ||
+      id === "" ||
+      pwd === "" ||
+      email === "" ||
+      birthday === "" ||
+      sex === ""
+    ) {
+      alert("회원가입 정보를 정확히 입력해주세요.");
+      return false;
+    }
 
-    if (!AgreeService)
-      return alert("이용 약관에 동의해주셔야 회원가입이 가능합니다.");
+    if (nickname.length < 2 || nickname.length > 8) {
+      alert("닉네임은 2자리 이상 8자리 이내로 입력해 주세요.");
+      return false;
+    }
+
+    if (id.length < 6 || id.length > 12) {
+      alert("아이디는 영문 6자리 이상 12자리 이내로 입력해주세요.");
+      return false;
+    }
+
+    if (pwd !== checkPwd) {
+      alert("입력하신 비밀번호와 비밀번호 확인이 서로 일치하지 않습니다.");
+      return false;
+    }
+
+    if (pwd.length < 8) {
+      alert("비밀번호를 8자리 이상 입력해주세요.");
+      return false;
+    }
+
+    if (checkEmail !== true) {
+      alert("이메일 확인 해주세요.");
+      return false;
+    }
+
+    if (!agreeService) {
+      alert("이용 약관에 동의해주셔야 회원가입이 가능합니다.");
+      return false;
+    }
 
     const body = {
-      nickname: Nickname,
-      id: Id,
-      pwd: Pwd,
-      email: Email,
-      birthday: Birthday,
-      sex: Sex,
+      Nickname: nickname,
+      Id: id,
+      Pwd: pwd,
+      Email: email,
+      Birthday: birthday,
+      Sex: sex,
     };
     console.log(body);
     return true;
@@ -107,7 +140,7 @@ const SignUp = () => {
           <div>
             <label>닉네임</label>
             <input
-              value={Nickname}
+              value={nickname}
               onChange={onNicknameHandler}
               placeholder="2자리 ~ 8자리"
             />
@@ -115,7 +148,7 @@ const SignUp = () => {
           <div>
             <label>아이디</label>
             <input
-              value={Id}
+              value={id}
               onChange={onIdHandler}
               placeholder="영문 6자리 ~ 12자리"
             />
@@ -123,15 +156,15 @@ const SignUp = () => {
           <div>
             <label>비밀번호</label>
             <input
-              value={Pwd}
+              value={pwd}
               onChange={onPwdHandler}
               placeholder="비밀번호를 8자리 이상 입력해주세요."
             />
           </div>
           <div>
             <label>비밀번호 확인</label>
-            <input value={CheckPwd} onChange={onCheckPwdHandler} />
-            {!Ismatch ? (
+            <input value={checkPwd} onChange={onCheckPwdHandler} />
+            {!ismatch ? (
               <p style={{ fontSize: "12px", color: "red", display: "inline" }}>
                 비밀번호가 서로 일치하지 않습니다.
               </p>
@@ -141,17 +174,17 @@ const SignUp = () => {
           </div>
           <div>
             <label>이메일</label>
-            <input value={Email} onChange={onEmailHandler} />
+            <input value={email} onChange={onEmailHandler} />
             <button onClick={isAllowEmail}>이메일 확인</button>
             {checkEmail === "" ? (
               ""
             ) : checkEmail ? (
-              <p style={{ fontSize: "12px", color: "red", display: "inline" }}>
-                사용할 수 없는 이메일입니다.
-              </p>
-            ) : (
               <p style={{ fontSize: "12px", color: "blue", display: "inline" }}>
                 사용할 수 있는 이메일 입니다.
+              </p>
+            ) : (
+              <p style={{ fontSize: "12px", color: "red", display: "inline" }}>
+                사용할 수 없는 이메일입니다.
               </p>
             )}
           </div>
@@ -201,7 +234,7 @@ const SignUp = () => {
             <Link
               to="/Information"
               style={{ cursor: "pointer" }}
-              onClick={nextHandler}
+              onClick={isAllowNext}
             >
               다음
             </Link>
