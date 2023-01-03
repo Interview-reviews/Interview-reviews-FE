@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const [Nickname, setNickname] = useState("");
@@ -10,7 +11,7 @@ const SignUp = () => {
   const [Birthday, setBirthday] = useState("");
   const [Sex, setSex] = useState("");
   const [AgreeService, setAgreeeService] = useState(false);
-  const [checkEmail, setCheckEmail] = useState(false);
+  const [checkEmail, setCheckEmail] = useState("");
 
   const onNicknameHandler = (e) => {
     setNickname(e.currentTarget.value);
@@ -47,7 +48,7 @@ const SignUp = () => {
   };
 
   const isAllowEmail = (e) => {
-    const regex = new RegExp("@");
+    const regex = /@/ && /.com/;
     e.preventDefault();
     if (regex.test(Email)) {
       setCheckEmail(false);
@@ -63,6 +64,10 @@ const SignUp = () => {
         checkboxes[i].checked = false;
       }
     });
+  };
+
+  const nextHandler = (e) => {
+    if (!onSubmitHandler) e.preventDefault();
   };
 
   const onSubmitHandler = (e) => {
@@ -84,6 +89,7 @@ const SignUp = () => {
       sex: Sex,
     };
     console.log(body);
+    return true;
   };
 
   return (
@@ -137,7 +143,9 @@ const SignUp = () => {
             <label>이메일</label>
             <input value={Email} onChange={onEmailHandler} />
             <button onClick={isAllowEmail}>이메일 확인</button>
-            {checkEmail ? (
+            {checkEmail === "" ? (
+              ""
+            ) : checkEmail ? (
               <p style={{ fontSize: "12px", color: "red", display: "inline" }}>
                 사용할 수 없는 이메일입니다.
               </p>
@@ -190,9 +198,13 @@ const SignUp = () => {
             />
           </div>
           <div>
-            <button style={{ cursor: "pointer" }} onClick={onSubmitHandler}>
-              회원가입 하기
-            </button>
+            <Link
+              to="/Information"
+              style={{ cursor: "pointer" }}
+              onClick={nextHandler}
+            >
+              다음
+            </Link>
           </div>
         </form>
       </div>
