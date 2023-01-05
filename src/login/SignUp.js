@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const SignUp = () => {
+const SignUp = (info) => {
   const [nickname, setNickname] = useState("");
   const [id, setId] = useState("");
   const [pwd, setPwd] = useState("");
@@ -45,6 +45,16 @@ const SignUp = () => {
 
   const onAgreeeServiceHandler = () => {
     setAgreeeService(!agreeService);
+  };
+
+  const isAllowNickname = (e) => {
+    // 입력된 닉네임 백엔드 통신해서 중복 체크
+    e.preventDefault();
+  };
+
+  const isAllowId = (e) => {
+    // 입력된 Id 백엔드 통신해서 중복 체크
+    e.preventDefault();
   };
 
   const isAllowEmail = (e) => {
@@ -148,6 +158,9 @@ const SignUp = () => {
               onChange={onNicknameHandler}
               placeholder="2자리 ~ 8자리"
             />
+            <button style={{ cursor: "pointer" }} onClick={isAllowNickname}>
+              닉네임 중복 확인
+            </button>
           </div>
           <div>
             <label>아이디</label>
@@ -156,6 +169,9 @@ const SignUp = () => {
               onChange={onIdHandler}
               placeholder="영문 6자리 ~ 12자리"
             />
+            <button style={{ cursor: "pointer" }} onClick={isAllowId}>
+              아이디 중복 확인
+            </button>
           </div>
           <div>
             <label>비밀번호</label>
@@ -236,13 +252,24 @@ const SignUp = () => {
           </div>
           <div>
             <Link
-              to="/Information"
+              to={{
+                pathname: "/Information",
+                state: {
+                  Nickname: nickname,
+                  Id: id,
+                  Pwd: pwd,
+                  Email: email,
+                  Birthday: birthday,
+                  Sex: sex,
+                },
+              }}
               style={{ cursor: "pointer" }}
               onClick={isAllowNext}
             >
               다음
             </Link>
           </div>
+          <Link to="/Information">그냥넘기기</Link>
           <button onClick={infoHandler}>테스트 버튼</button>
         </form>
       </div>

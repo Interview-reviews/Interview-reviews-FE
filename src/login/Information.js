@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Language from "./Language";
 
-const Information = () => {
+const Information = (props) => {
+  console.log(props);
   const [graduate, setGraduate] = useState("");
   const [school, setSchool] = useState("");
   const [major, setMajor] = useState("");
