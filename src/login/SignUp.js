@@ -305,6 +305,7 @@ const SignUp = (info) => {
             그냥넘기기
           </Link>
           <button onClick={infoHandler}>테스트 버튼</button>
+          <Link to="/Login">로그인창</Link>
         </form>
       </div>
     </>
