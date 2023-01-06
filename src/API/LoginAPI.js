@@ -1,4 +1,5 @@
 export async function checkNickname(formData) {
+  console.log(formData);
   const response = await fetch(``, {
     method: "GET",
     body: formData,

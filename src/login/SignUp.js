@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { checkId, checkNickname } from "../API/LoginAPI";
 
 const SignUp = (info) => {
   const [nickname, setNickname] = useState("");
@@ -11,6 +12,8 @@ const SignUp = (info) => {
   const [birthday, setBirthday] = useState("");
   const [sex, setSex] = useState("");
   const [agreeService, setAgreeeService] = useState(false);
+  const [allowNickname, setAllowNickname] = useState("");
+  const [allowId, setAllowId] = useState("");
   const [checkEmail, setCheckEmail] = useState("");
 
   const onNicknameHandler = (e) => {
@@ -47,14 +50,24 @@ const SignUp = (info) => {
     setAgreeeService(!agreeService);
   };
 
-  const isAllowNickname = (e) => {
-    // 입력된 닉네임 백엔드 통신해서 중복 체크
+  const isAllowNickname = async (e) => {
     e.preventDefault();
+    const isAllow = await checkNickname(nickname);
+    if (isAllow) {
+      setAllowNickname(true);
+    } else {
+      setAllowNickname(false);
+    }
   };
 
-  const isAllowId = (e) => {
-    // 입력된 Id 백엔드 통신해서 중복 체크
+  const isAllowId = async (e) => {
     e.preventDefault();
+    const isAllow = await checkId(nickname);
+    if (isAllow) {
+      setAllowId(true);
+    } else {
+      setAllowId(false);
+    }
   };
 
   const isAllowEmail = (e) => {
@@ -110,6 +123,16 @@ const SignUp = (info) => {
 
     if (pwd.length < 8 || pwd.length > 20) {
       alert("비밀번호를 8자리 이상 20자리 이내로 입력해주세요.");
+      return false;
+    }
+
+    if (allowNickname !== true) {
+      alert("닉네임을 확인 해주세요.");
+      return false;
+    }
+
+    if (allowId !== true) {
+      alert("아이디를 확인 해주세요.");
       return false;
     }
 
