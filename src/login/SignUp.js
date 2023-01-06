@@ -102,7 +102,7 @@ const SignUp = (info) => {
       birthday === "" ||
       sex === ""
     ) {
-      alert("회원가입 정보를 정확히 입력해주세요.");
+      alert("회원가입 정보를 모두 입력해주세요.");
       return false;
     }
 
@@ -147,6 +147,10 @@ const SignUp = (info) => {
     }
 
     return true;
+  };
+
+  const storeInfo = () => {
+    localStorage.setItem("Nickname", nickname);
   };
 
   const infoHandler = (e) => {
@@ -292,7 +296,14 @@ const SignUp = (info) => {
               다음
             </Link>
           </div>
-          <Link to="/Information">그냥넘기기</Link>
+          <Link
+            to={{
+              pathname: "/Information",
+            }}
+            onClick={storeInfo}
+          >
+            그냥넘기기
+          </Link>
           <button onClick={infoHandler}>테스트 버튼</button>
         </form>
       </div>

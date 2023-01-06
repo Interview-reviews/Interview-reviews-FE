@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import Language from "./Language";
 
 const Information = (props) => {
-  console.log(props);
+  const nickname = [...localStorage.getItem("Nickname")].join("");
+  console.log(nickname);
   const [graduate, setGraduate] = useState("");
   const [school, setSchool] = useState("");
   const [major, setMajor] = useState("");
