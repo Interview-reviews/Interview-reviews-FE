@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { checkId, checkNickname } from "../API/LoginAPI";
+import { checkId, checkNickname } from "../API/SignUpAPI";
 
 const SignUp = (info) => {
   const [nickname, setNickname] = useState("");
