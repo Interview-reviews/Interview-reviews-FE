@@ -63,6 +63,20 @@ const SignUp = (info) => {
     }
   };
 
+  const onPhoneNumberHandler = (e) => {
+    const result = onlyPhoneNumber(e.currentTarget.value);
+    if (result) {
+      setPhoneNumber(e.currentTarget.value);
+    } else {
+      setPhoneNumber(phoneNumber);
+    }
+  };
+
+  const onlyPhoneNumber = (value) => {
+    const pattern = /[0-9]|[-]/g;
+    return pattern.test(value[value.length - 1]);
+  };
+
   const isAllowEmail = (e) => {
     const regex = /@/ && /.com/;
     e.preventDefault();
@@ -173,7 +187,11 @@ const SignUp = (info) => {
         <form style={{ display: "flex", flexDirection: "column" }}>
           <div>
             <label>이름</label>
-            <input value={name} onChange={onNameHandler} placeholder="이름" />
+            <input
+              value={name}
+              onChange={onNameHandler}
+              placeholder="한글 이름만 입력"
+            />
           </div>
           <div>
             <label>닉네임</label>
@@ -220,7 +238,8 @@ const SignUp = (info) => {
             <label>휴대번호</label>
             <input
               value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.currentTarget.value)}
+              onChange={onPhoneNumberHandler}
+              maxLength={13}
               placeholder="대쉬 (-) 로 구분하여 입력"
             />
             <button style={{ cursor: "pointer" }} onClick={isAllowNickname}>
