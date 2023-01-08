@@ -10,34 +10,29 @@ const Information = (props) => {
   const [major, setMajor] = useState("");
   const [score, setScore] = useState("");
   const [job, setJob] = useState("");
+  const [language, setLanguage] = useState([]);
+  const [languageScroe, setLanguageScore] = useState("");
   const [activity, setActivity] = useState("");
-
-  const onGratudateHandler = (e) => {
-    setGraduate(e.target.value);
-  };
-
-  const onSchoolHandler = (e) => {
-    setSchool(e.currentTarget.value);
-  };
-
-  const onMajorHandler = (e) => {
-    setMajor(e.currentTarget.value);
-  };
-
-  const onScoreHandler = (e) => {
-    setScore(e.currentTarget.value);
-  };
-
-  const onJobHandler = (e) => {
-    setJob(e.currentTarget.value);
-  };
 
   const onActivityHandler = (e) => {
     setActivity(e.currentTarget.value);
   };
 
+  const transferInfo = (info) => {
+    setLanguage([...language, info]);
+  };
+
   const onSubmitHandler = (e) => {
     e.preventDefault();
+
+    if (graduate === "" || school === "") {
+      alert("필수 입력사항을 확인해주세요.");
+      return false;
+    }
+
+    const key = {
+      Nickname: localStorage.getItem("Nickname"),
+    };
 
     const education = {
       Graduate: graduate,
@@ -46,7 +41,19 @@ const Information = (props) => {
       Score: score,
     };
 
-    console.log(education, job);
+    const jobInfo = {
+      Job: job,
+    };
+
+    const languageInfo = {
+      Language: language,
+    };
+
+    const activityInfo = {
+      Activity: activity,
+    };
+
+    console.log({ key, education, jobInfo, languageInfo, activityInfo });
 
     return true;
   };
@@ -65,32 +72,30 @@ const Information = (props) => {
         <form style={{ display: "flex", flexDirection: "column" }}>
           <div>
             <label>학력*</label>
-            <select onChange={onGratudateHandler}>
+            <select onChange={(e) => setGraduate(e.currentTarget.value)}>
               <option selected value={""}>
                 학교 구분
               </option>
-              <option>
-                <p value="EducationCaseA">고등학교 졸업</p>
-              </option>
-              <option value={"EducationCaseB"}>대학 졸업 (2,3년)</option>
-              <option value={"EducationCaseC"}>대학교 졸업 (4년)</option>
-              <option value={"EducationCaseD"}>대학원 졸업</option>
+              <option>고등학교 졸업</option>
+              <option>대학 졸업 (2,3년)</option>
+              <option>대학교 졸업 (4년)</option>
+              <option>대학원 졸업</option>
             </select>
             <input
               value={school}
-              onChange={onSchoolHandler}
+              onChange={(e) => setSchool(e.currentTarget.value)}
               placeholder="학교명"
             />
           </div>
           <div>
             <input
               value={major}
-              onChange={onMajorHandler}
+              onChange={(e) => setMajor(e.currentTarget.value)}
               placeholder="전공명"
             />
             <input
               value={score}
-              onChange={onScoreHandler}
+              onChange={(e) => setScore(e.currentTarget.value)}
               maxLength={4}
               placeholder="학점"
             />
@@ -98,23 +103,26 @@ const Information = (props) => {
 
           <div>
             <label>희망 직무*</label>
-            <select>
+            <select onChange={(e) => setJob(e.currentTarget.value)}>
               <option selected value={""}>
                 직무 구분
               </option>
-              <option value={"EducationCaseB"}>프론트엔드</option>
-              <option value={"EducationCaseB"}>백엔드</option>
-              <option value={"EducationCaseC"}>빅데이터</option>
-              <option value={"EducationCaseD"}>AI</option>
+              <option>프론트엔드</option>
+              <option>백엔드</option>
+              <option>빅데이터</option>
+              <option>AI</option>
             </select>
             <p style={{ color: "gray", fontSize: "12px" }}>
               희망하는 직무 또는 현재 직무를 골라주세요.
             </p>
           </div>
-          <Language />
+          <Language propFunction={transferInfo} />
           <div>
             <label>인턴 / 대외활동</label>
-            <input value={activity} onChange={onActivityHandler} />
+            <input
+              onChange={(e) => setActivity(e.currentTarget.value)}
+              placeholder={"횟수"}
+            />
           </div>
           <div>
             <Link to="/SignUp" style={{ cursor: "pointer" }}>

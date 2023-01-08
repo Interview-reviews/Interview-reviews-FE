@@ -1,37 +1,34 @@
 import { useState } from "react";
 
-const Language = () => {
-  const [select, setSelect] = useState("");
-  const [language, setLanguage] = useState("");
+const Language = (props) => {
+  const [languageTest, setLanguageTest] = useState("");
   const [score, setScore] = useState("");
-  const [year, setYear] = useState("");
 
-  const onSelectHandler = (e) => {
-    setSelect(e.currentTarget.value);
+  const submitText = (e) => {
+    e.preventDefault();
+    console.log(languageTest, score);
+    props.propFunction([languageTest, score]);
   };
 
   return (
     <>
       <div>
         <label>어학</label>
-        <select onChange={onSelectHandler}>
+        <select onChange={(e) => setLanguageTest(e.currentTarget.value)}>
           <option selected value={""}>
             구분
           </option>
-          <option value="EducationCaseA">토익</option>
-          <option value={"EducationCaseB"}>토스</option>
-          <option value={"EducationCaseC"}>텝스</option>
+          <option>토익</option>
+          <option>토플</option>
+          <option>텝스</option>
         </select>
-        <input value={language} onChange={setLanguage} placeholder="외국어명" />
-      </div>
-      <div>
-        <input value={score} onChange={setScore} placeholder="급수/점수" />
+
         <input
-          value={year}
-          onChange={setYear}
-          maxLength={4}
-          placeholder="취득년월"
+          value={score}
+          onChange={(e) => setScore(e.currentTarget.value)}
+          placeholder="급수/점수"
         />
+        <button onClick={submitText}>어학점수 저장</button>
       </div>
     </>
   );
