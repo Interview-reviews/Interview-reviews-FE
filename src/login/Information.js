@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 import Language from "./Language";
 
 const Information = (props) => {
-  const nickname = [...localStorage.getItem("Nickname")].join("");
-  console.log(nickname);
   const [graduate, setGraduate] = useState("");
   const [school, setSchool] = useState("");
   const [major, setMajor] = useState("");
   const [score, setScore] = useState("");
   const [job, setJob] = useState("");
-  const [language, setLanguage] = useState([]);
   const [activity, setActivity] = useState("");
+  let [language, setLanguage] = useState([["", 0]]);
+
+  console.log(language);
 
   const onlyScore = (e) => {
     const result = isAllowScore(e.currentTarget.value);
@@ -41,6 +41,13 @@ const Information = (props) => {
       alert("필수 입력사항을 확인해주세요.");
       return false;
     }
+
+    language = language.filter((info) => {
+      if (info[0] !== "" && info[1] !== 0) {
+        console.log(info[1]);
+        return info;
+      }
+    });
 
     const key = {
       Nickname: localStorage.getItem("Nickname"),
@@ -128,7 +135,12 @@ const Information = (props) => {
               희망하는 직무 또는 현재 직무를 골라주세요.
             </p>
           </div>
-          <Language propFunction={transferInfo} />
+          <label>어학</label>
+          {language.map((info) => {
+            console.log(info);
+            return <Language propFunction={transferInfo} />;
+          })}
+
           <div>
             <label>인턴 / 대외활동</label>
             <input

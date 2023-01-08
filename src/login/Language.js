@@ -2,18 +2,18 @@ import { useState } from "react";
 
 const Language = (props) => {
   const [languageTest, setLanguageTest] = useState("");
-  const [score, setScore] = useState("");
+  const [score, setScore] = useState(0);
 
   const submitText = (e) => {
     e.preventDefault();
     console.log(languageTest, score);
     props.propFunction([languageTest, score]);
+    console.log(props.prop);
   };
 
   return (
     <>
       <div>
-        <label>어학</label>
         <select onChange={(e) => setLanguageTest(e.currentTarget.value)}>
           <option selected value={""}>
             구분
@@ -28,7 +28,7 @@ const Language = (props) => {
           onChange={(e) => setScore(e.currentTarget.value)}
           placeholder="급수/점수"
         />
-        <button onClick={submitText}>어학점수 저장</button>
+        <button onClick={submitText}>입력 저장</button>
       </div>
     </>
   );
