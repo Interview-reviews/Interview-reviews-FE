@@ -11,11 +11,23 @@ const Information = (props) => {
   const [score, setScore] = useState("");
   const [job, setJob] = useState("");
   const [language, setLanguage] = useState([]);
-  const [languageScroe, setLanguageScore] = useState("");
   const [activity, setActivity] = useState("");
 
-  const onActivityHandler = (e) => {
-    setActivity(e.currentTarget.value);
+  const onlyScore = (e) => {
+    const result = isAllowScore(e.currentTarget.value);
+    if (result) {
+      setScore(e.currentTarget.value);
+    } else {
+      setScore(score);
+    }
+    if (e.currentTarget.value.length === 0) {
+      setScore("");
+    }
+  };
+
+  const isAllowScore = (value) => {
+    const pattern = /[0-9]|[.]/g;
+    return pattern.test(value[value.length - 1]);
   };
 
   const transferInfo = (info) => {
@@ -95,9 +107,9 @@ const Information = (props) => {
             />
             <input
               value={score}
-              onChange={(e) => setScore(e.currentTarget.value)}
+              onChange={onlyScore}
               maxLength={4}
-              placeholder="학점"
+              placeholder="소수점 둘째자리까지 학점입력"
             />
           </div>
 

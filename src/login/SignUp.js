@@ -19,15 +19,6 @@ const SignUp = (info) => {
   const [allowId, setAllowId] = useState("");
   const [checkEmail, setCheckEmail] = useState("");
 
-  const onCheckPwdHandler = (e) => {
-    setCheckPwd(e.currentTarget.value);
-    if (e.currentTarget.value.length === 0 || e.currentTarget.value === pwd) {
-      setIsMatch(true);
-    } else {
-      setIsMatch(false);
-    }
-  };
-
   const onNameHandler = (e) => {
     setName(onlyKorean(e.currentTarget.value));
   };
@@ -40,6 +31,15 @@ const SignUp = (info) => {
     }
     setNameCheck(true);
     return value;
+  };
+
+  const onCheckPwdHandler = (e) => {
+    setCheckPwd(e.currentTarget.value);
+    if (e.currentTarget.value.length === 0 || e.currentTarget.value === pwd) {
+      setIsMatch(true);
+    } else {
+      setIsMatch(false);
+    }
   };
 
   const onSexHandler = (e) => {
@@ -72,6 +72,9 @@ const SignUp = (info) => {
       setPhoneNumber(e.currentTarget.value);
     } else {
       setPhoneNumber(phoneNumber);
+    }
+    if (e.currentTarget.value.length === 0) {
+      setPhoneNumber("");
     }
   };
 
