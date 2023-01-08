@@ -34,9 +34,13 @@ const Information = (props) => {
     setLanguage([...language, info]);
   };
 
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
+  const isAllowSubmit = (e) => {
+    if (!onSubmitHandler()) {
+      e.preventDefault();
+    }
+  };
 
+  const onSubmitHandler = (e) => {
     if (graduate === "" || school === "") {
       alert("필수 입력사항을 확인해주세요.");
       return false;
@@ -155,7 +159,7 @@ const Information = (props) => {
             <Link
               to="/Welcome"
               style={{ cursor: "pointer" }}
-              onSubmit={onSubmitHandler}
+              onClick={isAllowSubmit}
             >
               회원가입 하기
             </Link>

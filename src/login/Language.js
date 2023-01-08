@@ -6,9 +6,7 @@ const Language = (props) => {
 
   const submitText = (e) => {
     e.preventDefault();
-    console.log(languageTest, score);
     props.propFunction([languageTest, score]);
-    console.log(props.prop);
   };
 
   return (

@@ -326,14 +326,6 @@ const SignUp = (info) => {
             <Link
               to={{
                 pathname: "/Information",
-                state: {
-                  Nickname: nickname,
-                  Id: id,
-                  Pwd: pwd,
-                  Email: email,
-                  Birthday: birthday,
-                  Sex: sex,
-                },
               }}
               style={{ cursor: "pointer" }}
               onClick={isAllowNext}
