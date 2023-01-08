@@ -3,6 +3,7 @@ import Information from "./login/Information";
 import Login from "./login/Login";
 import SignUp from "./login/SignUp";
 import Main from "./pages/Main";
+import NotFound from "./pages/NotFound";
 import Welcome from "./pages/Welcome";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/SignUp" element={<SignUp />}></Route>
         <Route path="/Information" element={<Information />}></Route>
         <Route path="/Welcome" element={<Welcome />}></Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
