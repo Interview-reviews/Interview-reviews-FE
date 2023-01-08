@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import { checkId, checkNickname } from "../API/SignUpAPI";
 
 const SignUp = (info) => {
+  const [name, setName] = useState("");
   const [nickname, setNickname] = useState("");
   const [id, setId] = useState("");
   const [pwd, setPwd] = useState("");
   const [ismatch, setIsmatch] = useState(true);
   const [checkPwd, setCheckPwd] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
   const [sex, setSex] = useState("");
@@ -16,15 +18,6 @@ const SignUp = (info) => {
   const [allowId, setAllowId] = useState("");
   const [checkEmail, setCheckEmail] = useState("");
 
-  const onNicknameHandler = (e) => {
-    setNickname(e.currentTarget.value);
-  };
-  const onIdHandler = (e) => {
-    setId(e.currentTarget.value);
-  };
-  const onPwdHandler = (e) => {
-    setPwd(e.currentTarget.value);
-  };
   const onCheckPwdHandler = (e) => {
     setCheckPwd(e.currentTarget.value);
     if (e.currentTarget.value.length === 0 || e.currentTarget.value === pwd) {
@@ -34,20 +27,8 @@ const SignUp = (info) => {
     }
   };
 
-  const onEmailHandler = (e) => {
-    setEmail(e.currentTarget.value);
-  };
-
-  const onBirthdayHandler = (e) => {
-    setBirthday(e.currentTarget.value);
-  };
-
   const onSexHandler = (e) => {
     setSex(e.currentTarget.value);
-  };
-
-  const onAgreeeServiceHandler = () => {
-    setAgreeeService(!agreeService);
   };
 
   const isAllowNickname = async (e) => {
@@ -179,10 +160,18 @@ const SignUp = (info) => {
       >
         <form style={{ display: "flex", flexDirection: "column" }}>
           <div>
+            <label>이름</label>
+            <input
+              value={name}
+              onChange={(e) => setName(e.currentTarget.value)}
+              placeholder="이름"
+            />
+          </div>
+          <div>
             <label>닉네임</label>
             <input
               value={nickname}
-              onChange={onNicknameHandler}
+              onChange={(e) => setNickname(e.currentTarget.value)}
               placeholder="2자리 ~ 8자리"
             />
             <button style={{ cursor: "pointer" }} onClick={isAllowNickname}>
@@ -193,7 +182,7 @@ const SignUp = (info) => {
             <label>아이디</label>
             <input
               value={id}
-              onChange={onIdHandler}
+              onChange={(e) => setId(e.currentTarget.value)}
               placeholder="영문 6자리 ~ 12자리"
             />
             <button style={{ cursor: "pointer" }} onClick={isAllowId}>
@@ -204,7 +193,7 @@ const SignUp = (info) => {
             <label>비밀번호</label>
             <input
               value={pwd}
-              onChange={onPwdHandler}
+              onChange={(e) => setPwd(e.currentTarget.value)}
               placeholder="비밀번호를 8자리 이상 20자리 이내로 설정해주세요."
             />
           </div>
@@ -220,8 +209,22 @@ const SignUp = (info) => {
             )}
           </div>
           <div>
+            <label>휴대번호</label>
+            <input
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.currentTarget.value)}
+              placeholder="대쉬 (-) 로 구분하여 입력"
+            />
+            <button style={{ cursor: "pointer" }} onClick={isAllowNickname}>
+              본인 확인
+            </button>
+          </div>
+          <div>
             <label>이메일</label>
-            <input value={email} onChange={onEmailHandler} />
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.currentTarget.value)}
+            />
             <button onClick={isAllowEmail}>이메일 확인</button>
             {checkEmail === "" ? (
               ""
@@ -239,9 +242,9 @@ const SignUp = (info) => {
             <label>생년월일</label>
             <input
               type="birthday"
-              placeholder="YYMMDD 주민등록번호 앞 6자리"
-              maxLength={6}
-              onChange={onBirthdayHandler}
+              placeholder="YYYYMMDD 띄어쓰기 없이 입력"
+              maxLength={8}
+              onChange={(e) => setBirthday(e.currentTarget.value)}
             />
           </div>
           <div>
@@ -274,7 +277,7 @@ const SignUp = (info) => {
             <input
               style={{ cursor: "pointer" }}
               type="checkbox"
-              onChange={onAgreeeServiceHandler}
+              onChange={(e) => setAgreeeService(e.currentTarget.value)}
             />
           </div>
           <div>

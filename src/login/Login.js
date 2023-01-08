@@ -21,8 +21,10 @@ const Login = () => {
       <button>로그인</button>
       <div>
         <Link to="/SignUp">회원가입</Link>
-        <h3>아이디 찾기</h3>
-        <h3>비밀번호 찾기</h3>
+        <div>
+          <button>아이디 찾기</button>
+          <button>비밀번호 찾기</button>
+        </div>
       </div>
     </>
   );

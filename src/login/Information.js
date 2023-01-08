@@ -69,7 +69,7 @@ const Information = (props) => {
       >
         <form style={{ display: "flex", flexDirection: "column" }}>
           <div>
-            <label>학력</label>
+            <label>학력*</label>
             <select onChange={onGratudateHandler}>
               <option selected value={""}>
                 학교 구분
@@ -102,8 +102,19 @@ const Information = (props) => {
           </div>
 
           <div>
-            <label>직무</label>
-            <input value={job} onChange={onJobHandler} placeholder="직무명" />
+            <label>희망 직무*</label>
+            <select>
+              <option selected value={""}>
+                직무 구분
+              </option>
+              <option value={"EducationCaseB"}>프론트엔드</option>
+              <option value={"EducationCaseB"}>백엔드</option>
+              <option value={"EducationCaseC"}>빅데이터</option>
+              <option value={"EducationCaseD"}>AI</option>
+            </select>
+            <p style={{ color: "gray", fontSize: "12px" }}>
+              희망하는 직무 또는 현재 직무를 골라주세요.
+            </p>
           </div>
           <Language />
           <div>
