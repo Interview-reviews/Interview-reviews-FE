@@ -240,7 +240,11 @@ const SignUp = (info) => {
           </div>
           <div>
             <label>비밀번호 확인</label>
-            <input value={checkPwd} onChange={onCheckPwdHandler} />
+            <input
+              value={checkPwd}
+              onChange={onCheckPwdHandler}
+              placeholder="입력하신 비밀번호와 동일하게 입력해주세요."
+            />
             {isMatch === "" || isMatch ? (
               ""
             ) : (
