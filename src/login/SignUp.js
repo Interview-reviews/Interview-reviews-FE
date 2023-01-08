@@ -4,10 +4,11 @@ import { checkId, checkNickname } from "../API/SignUpAPI";
 
 const SignUp = (info) => {
   const [name, setName] = useState("");
+  const [nameCheck, setNameCheck] = useState("");
   const [nickname, setNickname] = useState("");
   const [id, setId] = useState("");
   const [pwd, setPwd] = useState("");
-  const [ismatch, setIsmatch] = useState(true);
+  const [isMatch, setIsMatch] = useState(true);
   const [checkPwd, setCheckPwd] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
@@ -21,9 +22,9 @@ const SignUp = (info) => {
   const onCheckPwdHandler = (e) => {
     setCheckPwd(e.currentTarget.value);
     if (e.currentTarget.value.length === 0 || e.currentTarget.value === pwd) {
-      setIsmatch(true);
+      setIsMatch(true);
     } else {
-      setIsmatch(false);
+      setIsMatch(false);
     }
   };
 
@@ -34,8 +35,10 @@ const SignUp = (info) => {
   const onlyKorean = (value) => {
     const pattern = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
     if (pattern.test(value)) {
+      setNameCheck(false);
       return name;
     }
+    setNameCheck(true);
     return value;
   };
 
@@ -163,9 +166,11 @@ const SignUp = (info) => {
   const infoHandler = (e) => {
     e.preventDefault();
     const body = {
+      Name: name,
       Nickname: nickname,
       Id: id,
       Pwd: pwd,
+      PhoneNumber: phoneNumber,
       Email: email,
       Birthday: birthday,
       Sex: sex,
@@ -192,6 +197,13 @@ const SignUp = (info) => {
               onChange={onNameHandler}
               placeholder="한글 이름만 입력"
             />
+            {nameCheck === "" || nameCheck ? (
+              ""
+            ) : (
+              <p style={{ fontSize: "12px", color: "red", display: "inline" }}>
+                한글만 입력 가능 합니다.
+              </p>
+            )}
           </div>
           <div>
             <label>닉네임</label>
@@ -226,12 +238,12 @@ const SignUp = (info) => {
           <div>
             <label>비밀번호 확인</label>
             <input value={checkPwd} onChange={onCheckPwdHandler} />
-            {!ismatch ? (
+            {isMatch === "" || isMatch ? (
+              ""
+            ) : (
               <p style={{ fontSize: "12px", color: "red", display: "inline" }}>
                 비밀번호가 서로 일치하지 않습니다.
               </p>
-            ) : (
-              ""
             )}
           </div>
           <div>
