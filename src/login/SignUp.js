@@ -27,6 +27,18 @@ const SignUp = (info) => {
     }
   };
 
+  const onNameHandler = (e) => {
+    setName(onlyKorean(e.currentTarget.value));
+  };
+
+  const onlyKorean = (value) => {
+    const pattern = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+    if (pattern.test(value)) {
+      return name;
+    }
+    return value;
+  };
+
   const onSexHandler = (e) => {
     setSex(e.currentTarget.value);
   };
@@ -161,11 +173,7 @@ const SignUp = (info) => {
         <form style={{ display: "flex", flexDirection: "column" }}>
           <div>
             <label>이름</label>
-            <input
-              value={name}
-              onChange={(e) => setName(e.currentTarget.value)}
-              placeholder="이름"
-            />
+            <input value={name} onChange={onNameHandler} placeholder="이름" />
           </div>
           <div>
             <label>닉네임</label>

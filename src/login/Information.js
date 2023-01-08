@@ -11,7 +11,6 @@ const Information = (props) => {
   const [score, setScore] = useState("");
   const [job, setJob] = useState("");
   const [activity, setActivity] = useState("");
-  const [award, setAward] = useState("");
 
   const onGratudateHandler = (e) => {
     setGraduate(e.target.value);
@@ -35,10 +34,6 @@ const Information = (props) => {
 
   const onActivityHandler = (e) => {
     setActivity(e.currentTarget.value);
-  };
-
-  const onAwardHandler = (e) => {
-    setAward(e.currentTarget.value);
   };
 
   const onSubmitHandler = (e) => {
@@ -120,10 +115,6 @@ const Information = (props) => {
           <div>
             <label>인턴 / 대외활동</label>
             <input value={activity} onChange={onActivityHandler} />
-          </div>
-          <div>
-            <label>수상 경력</label>
-            <input value={award} onChange={onAwardHandler} />
           </div>
           <div>
             <Link to="/SignUp" style={{ cursor: "pointer" }}>
