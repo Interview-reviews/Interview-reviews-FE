@@ -337,7 +337,7 @@ const SignUp = (info) => {
               style={{ cursor: "pointer" }}
               onClick={isAllowNext}
             >
-              다음
+              <button>다음</button>
             </Link>
           </div>
           <Link

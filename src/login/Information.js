@@ -156,17 +156,19 @@ const Information = (props) => {
           </div>
           <div>
             <Link to="/SignUp" style={{ cursor: "pointer" }}>
-              이전
+              <button>이전</button>
             </Link>
             <Link
               to="/Welcome"
               style={{ cursor: "pointer" }}
               onClick={isAllowSubmit}
             >
-              회원가입 하기
+              <button>회원가입 하기</button>
             </Link>
-
-            <button onClick={onSubmitHandler}>확인용</button>
+            <div>
+              {" "}
+              <button onClick={onSubmitHandler}>확인용</button>
+            </div>
           </div>
         </form>
       </div>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const FindPassword = () => {
   const [toggle, setToggle] = useState(false);
@@ -25,7 +26,9 @@ const FindPassword = () => {
         </div>
       )}
 
-      <button>비밀번호 찾기</button>
+      <Link to="/ResetPassword">
+        <button>비밀번호 찾기</button>
+      </Link>
     </>
   );
 };

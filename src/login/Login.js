@@ -20,10 +20,16 @@ const Login = () => {
       </div>
       <button onClick={attemptLogin}>로그인</button>
       <div>
-        <Link to="/SignUp">회원가입</Link>
+        <Link to="/SignUp">
+          <button>회원가입</button>
+        </Link>
         <div>
-          <Link to="/FindId">아이디 찾기</Link>
-          <Link to="/FindPassword">비밀번호 찾기</Link>
+          <Link to="/FindId">
+            <button>아이디 찾기</button>
+          </Link>
+          <Link to="/FindPassword">
+            <button>비밀번호 찾기</button>
+          </Link>
         </div>
       </div>
     </>
