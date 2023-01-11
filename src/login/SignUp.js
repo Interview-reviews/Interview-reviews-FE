@@ -3,31 +3,31 @@ import { Link } from "react-router-dom";
 import { checkId, checkNickname } from "../API/SignUpAPI";
 
 const SignUp = (info) => {
-  const [name, setName] = useState("");
+  const [userName, setUserName] = useState("");
   const [nameCheck, setNameCheck] = useState("");
   const [nickname, setNickname] = useState("");
-  const [id, setId] = useState("");
-  const [pwd, setPwd] = useState("");
+  const [userId, setUserId] = useState("");
+  const [password, setPassword] = useState("");
   const [isMatch, setIsMatch] = useState(true);
   const [checkPwd, setCheckPwd] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
-  const [birthday, setBirthday] = useState("");
-  const [sex, setSex] = useState("");
+  const [birthDate, setBirthDate] = useState("");
+  const [gender, setGender] = useState("");
   const [agreeService, setAgreeeService] = useState(false);
   const [allowNickname, setAllowNickname] = useState("");
   const [allowId, setAllowId] = useState("");
   const [checkEmail, setCheckEmail] = useState("");
 
   const onNameHandler = (e) => {
-    setName(onlyKorean(e.currentTarget.value));
+    setUserName(onlyKorean(e.currentTarget.value));
   };
 
   const onlyKorean = (value) => {
     const pattern = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
     if (pattern.test(value)) {
       setNameCheck(false);
-      return name;
+      return userName;
     }
     setNameCheck(true);
     return value;
@@ -35,7 +35,10 @@ const SignUp = (info) => {
 
   const onCheckPwdHandler = (e) => {
     setCheckPwd(e.currentTarget.value);
-    if (e.currentTarget.value.length === 0 || e.currentTarget.value === pwd) {
+    if (
+      e.currentTarget.value.length === 0 ||
+      e.currentTarget.value === password
+    ) {
       setIsMatch(true);
     } else {
       setIsMatch(false);
@@ -43,7 +46,7 @@ const SignUp = (info) => {
   };
 
   const onSexHandler = (e) => {
-    setSex(e.currentTarget.value);
+    setGender(e.currentTarget.value);
   };
 
   const isAllowNickname = async (e) => {
@@ -109,11 +112,11 @@ const SignUp = (info) => {
   const onSubmitHandler = (e) => {
     if (
       nickname === "" ||
-      id === "" ||
-      pwd === "" ||
+      userId === "" ||
+      password === "" ||
       email === "" ||
-      birthday === "" ||
-      sex === ""
+      birthDate === "" ||
+      gender === ""
     ) {
       alert("회원가입 정보를 모두 입력해주세요.");
       return false;
@@ -124,17 +127,17 @@ const SignUp = (info) => {
       return false;
     }
 
-    if (id.length < 6 || id.length > 12) {
+    if (userId.length < 6 || userId.length > 12) {
       alert("아이디는 영문 6자리 이상 12자리 이내로 입력해주세요.");
       return false;
     }
 
-    if (pwd !== checkPwd) {
+    if (password !== checkPwd) {
       alert("입력하신 비밀번호와 비밀번호 확인이 서로 일치하지 않습니다.");
       return false;
     }
 
-    if (pwd.length < 8 || pwd.length > 20) {
+    if (password.length < 8 || password.length > 20) {
       alert("비밀번호를 8자리 이상 20자리 이내로 입력해주세요.");
       return false;
     }
@@ -169,14 +172,14 @@ const SignUp = (info) => {
   const infoHandler = (e) => {
     e.preventDefault();
     const body = {
-      Name: name,
+      UserName: userName,
       Nickname: nickname,
-      Id: id,
-      Pwd: pwd,
+      UserId: userId,
+      Password: password,
       PhoneNumber: phoneNumber,
       Email: email,
-      Birthday: birthday,
-      Sex: sex,
+      BirthDate: birthDate,
+      Gender: gender,
     };
     console.log(body);
   };
@@ -196,7 +199,7 @@ const SignUp = (info) => {
           <div>
             <label>이름</label>
             <input
-              value={name}
+              value={userName}
               onChange={onNameHandler}
               placeholder="한글 이름만 입력"
             />
@@ -222,8 +225,8 @@ const SignUp = (info) => {
           <div>
             <label>아이디</label>
             <input
-              value={id}
-              onChange={(e) => setId(e.currentTarget.value)}
+              value={userId}
+              onChange={(e) => setUserId(e.currentTarget.value)}
               placeholder="영문 6자리 ~ 12자리"
             />
             <button style={{ cursor: "pointer" }} onClick={isAllowId}>
@@ -233,8 +236,8 @@ const SignUp = (info) => {
           <div>
             <label>비밀번호</label>
             <input
-              value={pwd}
-              onChange={(e) => setPwd(e.currentTarget.value)}
+              value={password}
+              onChange={(e) => setPassword(e.currentTarget.value)}
               placeholder="비밀번호를 8자리 이상 20자리 이내로 설정해주세요."
             />
           </div>
@@ -290,7 +293,7 @@ const SignUp = (info) => {
               type="birthday"
               placeholder="YYYYMMDD 띄어쓰기 없이 입력"
               maxLength={8}
-              onChange={(e) => setBirthday(e.currentTarget.value)}
+              onChange={(e) => setBirthDate(e.currentTarget.value)}
             />
           </div>
           <div>

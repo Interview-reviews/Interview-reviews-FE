@@ -18,11 +18,11 @@ const Login = () => {
       <div>
         <input placeholder="비밀번호" />
       </div>
-      <button>로그인</button>
+      <button onClick={attemptLogin}>로그인</button>
       <div>
         <Link to="/SignUp">회원가입</Link>
         <div>
-          <button>아이디 찾기</button>
+          <Link to="/FindId">아이디 찾기</Link>
           <button>비밀번호 찾기</button>
         </div>
       </div>

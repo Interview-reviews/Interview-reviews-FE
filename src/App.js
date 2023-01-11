@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import FindId from "./login/FindId";
 import Information from "./login/Information";
 import Login from "./login/Login";
 import SignUp from "./login/SignUp";
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />}></Route>
         <Route path="/Login" element={<Login />}></Route>
+        <Route path="/FindId" element={<FindId />}></Route>
         <Route path="/SignUp" element={<SignUp />}></Route>
         <Route path="/Information" element={<Information />}></Route>
         <Route path="/Welcome" element={<Welcome />}></Route>

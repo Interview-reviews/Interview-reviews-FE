@@ -6,22 +6,22 @@ const Information = (props) => {
   const [graduate, setGraduate] = useState("");
   const [school, setSchool] = useState("");
   const [major, setMajor] = useState("");
-  const [score, setScore] = useState("");
+  const [grades, setGrades] = useState("");
   const [job, setJob] = useState("");
-  const [activity, setActivity] = useState("");
+  const [intern, setIntern] = useState("");
   let [language, setLanguage] = useState([["", 0]]);
 
   console.log(language);
 
-  const onlyScore = (e) => {
+  const onlyNumber = (e) => {
     const result = isAllowScore(e.currentTarget.value);
     if (result) {
-      setScore(e.currentTarget.value);
+      setGrades(e.currentTarget.value);
     } else {
-      setScore(score);
+      setGrades(grades);
     }
     if (e.currentTarget.value.length === 0) {
-      setScore("");
+      setGrades("");
     }
   };
 
@@ -53,6 +53,8 @@ const Information = (props) => {
       }
     });
 
+    console.log(language);
+
     const key = {
       Nickname: localStorage.getItem("Nickname"),
     };
@@ -61,7 +63,7 @@ const Information = (props) => {
       Graduate: graduate,
       School: school,
       Major: major,
-      Score: score,
+      Grades: grades,
     };
 
     const jobInfo = {
@@ -72,11 +74,11 @@ const Information = (props) => {
       Language: language,
     };
 
-    const activityInfo = {
-      Activity: activity,
+    const internInfo = {
+      Intern: intern,
     };
 
-    console.log({ key, education, jobInfo, languageInfo, activityInfo });
+    console.log({ key, education, jobInfo, languageInfo, internInfo });
 
     return true;
   };
@@ -117,8 +119,8 @@ const Information = (props) => {
               placeholder="전공명"
             />
             <input
-              value={score}
-              onChange={onlyScore}
+              value={grades}
+              onChange={onlyNumber}
               maxLength={4}
               placeholder="소수점 둘째자리까지 학점입력"
             />
@@ -148,7 +150,7 @@ const Information = (props) => {
           <div>
             <label>인턴 / 대외활동</label>
             <input
-              onChange={(e) => setActivity(e.currentTarget.value)}
+              onChange={(e) => setIntern(e.currentTarget.value)}
               placeholder={"횟수"}
             />
           </div>
