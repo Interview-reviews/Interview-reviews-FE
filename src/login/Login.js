@@ -23,7 +23,7 @@ const Login = () => {
         <Link to="/SignUp">회원가입</Link>
         <div>
           <Link to="/FindId">아이디 찾기</Link>
-          <button>비밀번호 찾기</button>
+          <Link to="/FindPassword">비밀번호 찾기</Link>
         </div>
       </div>
     </>
