@@ -1,6 +1,9 @@
+import Nav from "../components/Nav";
+
 const ResetPassword = () => {
   return (
     <>
+      <Nav />
       <div>
         <h3>비밀번호 설정</h3>
         <input placeholder="비밀번호를 8자리 이상 20자리 이내로 설정해주세요." />

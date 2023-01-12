@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Nav from "../components/Nav";
 
 const FindPassword = () => {
   const [toggle, setToggle] = useState(false);
@@ -9,6 +10,7 @@ const FindPassword = () => {
   };
   return (
     <>
+      <Nav />
       <h3>비밀번호 찾기 페이지</h3>
       <div>
         <h3>아이디</h3>

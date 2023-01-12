@@ -1,6 +1,9 @@
+import Nav from "../components/Nav";
+
 const FindId = () => {
   return (
     <>
+      <Nav />
       <h3>아이디 찾기 페이지</h3>
       <div>
         <h3>이름</h3>

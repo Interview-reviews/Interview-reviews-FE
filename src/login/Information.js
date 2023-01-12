@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Nav from "../components/Nav";
 import Language from "./Language";
 
 const Information = (props) => {
@@ -85,6 +86,7 @@ const Information = (props) => {
 
   return (
     <>
+      <Nav />
       <div
         style={{
           display: "flex",

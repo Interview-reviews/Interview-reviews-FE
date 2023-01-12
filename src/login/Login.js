@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { checkLogin } from "../API/LoginAPI";
+import Nav from "../components/Nav";
 
 const Login = () => {
   const attemptLogin = async () => {
@@ -9,6 +10,7 @@ const Login = () => {
   };
   return (
     <>
+      <Nav />
       <div>
         <h1>로그인 </h1>
       </div>

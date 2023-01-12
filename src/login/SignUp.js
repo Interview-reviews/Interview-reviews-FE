@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { checkId, checkNickname } from "../API/SignUpAPI";
+import Nav from "../components/Nav";
 
 const SignUp = (info) => {
   const [userName, setUserName] = useState("");
@@ -186,6 +187,7 @@ const SignUp = (info) => {
 
   return (
     <>
+      <Nav />
       <div
         style={{
           display: "flex",
@@ -267,6 +269,7 @@ const SignUp = (info) => {
             <button style={{ cursor: "pointer" }} onClick={isAllowNickname}>
               본인 확인
             </button>
+            <i style={{ color: "gray", fontSize: "12px" }}>ex.010-xxxx-xxxx</i>
           </div>
           <div>
             <label>이메일</label>
