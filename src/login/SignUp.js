@@ -4,10 +4,9 @@ import { checkId, checkNickname } from "../API/SignUpAPI";
 import Nav from "../components/Nav";
 
 const SignUp = (info) => {
-  const [userName, setUserName] = useState("");
-  const [nameCheck, setNameCheck] = useState("");
-  const [nickname, setNickname] = useState("");
-  const [userId, setUserId] = useState("");
+  const [userName, setUserName] = useState(""); // 아이디
+  //   const [nameCheck, setNameCheck] = useState("");
+  const [nickname, setNickname] = useState(""); // 닉네임
   const [password, setPassword] = useState("");
   const [isMatch, setIsMatch] = useState(true);
   const [checkPwd, setCheckPwd] = useState("");
@@ -20,19 +19,19 @@ const SignUp = (info) => {
   const [allowId, setAllowId] = useState("");
   const [checkEmail, setCheckEmail] = useState("");
 
-  const onNameHandler = (e) => {
-    setUserName(onlyKorean(e.currentTarget.value));
-  };
+  //   const onNameHandler = (e) => {
+  //     setUserName(onlyKorean(e.currentTarget.value));
+  //   };
 
-  const onlyKorean = (value) => {
-    const pattern = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
-    if (pattern.test(value)) {
-      setNameCheck(false);
-      return userName;
-    }
-    setNameCheck(true);
-    return value;
-  };
+  //   const onlyKorean = (value) => {
+  //     const pattern = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+  //     if (pattern.test(value)) {
+  //       setNameCheck(false);
+  //       return userName;
+  //     }
+  //     setNameCheck(true);
+  //     return value;
+  //   };
 
   const onCheckPwdHandler = (e) => {
     setCheckPwd(e.currentTarget.value);
@@ -92,9 +91,26 @@ const SignUp = (info) => {
     e.preventDefault();
     if (regex.test(email)) {
       setCheckEmail(true);
+      sendEmail();
     } else {
       setCheckEmail(false);
     }
+  };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    fetch("보낼 주소", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(email),
+    })
+      .then((res) => res.json())
+      .then((json) => {});
+  };
+
+  const isVaildEmail = (e) => {
+    e.preventDefault();
+    alert("인증되었습니다.");
   };
 
   const checkOnlyOne = (nowCheck) => {
@@ -113,7 +129,7 @@ const SignUp = (info) => {
   const onSubmitHandler = (e) => {
     if (
       nickname === "" ||
-      userId === "" ||
+      userName === "" ||
       password === "" ||
       email === "" ||
       birthDate === "" ||
@@ -128,7 +144,7 @@ const SignUp = (info) => {
       return false;
     }
 
-    if (userId.length < 6 || userId.length > 12) {
+    if (userName.length < 6 || userName.length > 12) {
       alert("아이디는 영문 6자리 이상 12자리 이내로 입력해주세요.");
       return false;
     }
@@ -173,9 +189,8 @@ const SignUp = (info) => {
   const infoHandler = (e) => {
     e.preventDefault();
     const body = {
-      UserName: userName,
       Nickname: nickname,
-      UserId: userId,
+      UserName: userName,
       Password: password,
       PhoneNumber: phoneNumber,
       Email: email,
@@ -198,7 +213,7 @@ const SignUp = (info) => {
         }}
       >
         <form style={{ display: "flex", flexDirection: "column" }}>
-          <div>
+          {/* <div>
             <label>이름</label>
             <input
               value={userName}
@@ -212,7 +227,7 @@ const SignUp = (info) => {
                 한글만 입력 가능 합니다.
               </p>
             )}
-          </div>
+          </div> */}
           <div>
             <label>닉네임</label>
             <input
@@ -227,8 +242,8 @@ const SignUp = (info) => {
           <div>
             <label>아이디</label>
             <input
-              value={userId}
-              onChange={(e) => setUserId(e.currentTarget.value)}
+              value={userName}
+              onChange={(e) => setUserName(e.currentTarget.value)}
               placeholder="영문 6자리 ~ 12자리"
             />
             <button style={{ cursor: "pointer" }} onClick={isAllowId}>
@@ -266,9 +281,9 @@ const SignUp = (info) => {
               maxLength={13}
               placeholder="대쉬 (-) 로 구분하여 입력"
             />
-            <button style={{ cursor: "pointer" }} onClick={isAllowNickname}>
+            {/* <button style={{ cursor: "pointer" }} onClick={isAllowNickname}>
               본인 확인
-            </button>
+            </button> */}
             <i style={{ color: "gray", fontSize: "12px" }}>ex.010-xxxx-xxxx</i>
           </div>
           <div>
@@ -288,6 +303,12 @@ const SignUp = (info) => {
               <p style={{ fontSize: "12px", color: "red", display: "inline" }}>
                 사용할 수 없는 이메일입니다.
               </p>
+            )}
+            {checkEmail && (
+              <div>
+                <input placeholder="인증번호를 입력해주세요" />{" "}
+                <button onClick={isVaildEmail}>인증하기</button>
+              </div>
             )}
           </div>
           <div>

@@ -138,6 +138,7 @@ const Information = (props) => {
               <option>백엔드</option>
               <option>빅데이터</option>
               <option>AI</option>
+              <option>정보보안</option>
             </select>
             <p style={{ color: "gray", fontSize: "12px" }}>
               희망하는 직무 또는 현재 직무를 골라주세요.

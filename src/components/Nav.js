@@ -32,21 +32,32 @@ const Nav = () => {
       <div>
         <Header>
           <NavBar>
-            <Link to="/">로고가 들어갈 영역</Link>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              로고가 들어갈 영역
+            </Link>
           </NavBar>
           <div style={{ flexGrow: "1" }}></div>
           <NavBar>
             {" "}
-            <Link to="/Login">로그인</Link>
+            <Link to="/Login" style={{ textDecoration: "none" }}>
+              로그인
+            </Link>
           </NavBar>
           <NavBar>
             {" "}
-            <Link to="/SignUp">회원가입</Link>
+            <Link to="/SignUp" style={{ textDecoration: "none" }}>
+              회원가입
+            </Link>
           </NavBar>
         </Header>
       </div>
       <Header>
-        <NavBar>홈</NavBar>
+        <NavBar>
+          {" "}
+          <Link to="/" style={{ textDecoration: "none" }}>
+            홈
+          </Link>
+        </NavBar>
         <NavBar>후기글</NavBar>
         <NavBar>커뮤니티</NavBar>
         <NavBar>공지사항</NavBar>
