@@ -12,7 +12,8 @@ const Information = (props) => {
   const [intern, setIntern] = useState("");
   let [language, setLanguage] = useState([["", 0]]);
 
-  console.log(language);
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  console.log(userInfo);
 
   const onlyNumber = (e) => {
     const result = isAllowScore(e.currentTarget.value);

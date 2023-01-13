@@ -1,7 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { checkId, checkNickname } from "../API/SignUpAPI";
 import Nav from "../components/Nav";
+import styled from "styled-components";
+
+const SignUpContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+`;
 
 const SignUp = (info) => {
   const [userName, setUserName] = useState(""); // 아이디
@@ -18,6 +27,18 @@ const SignUp = (info) => {
   const [allowNickname, setAllowNickname] = useState("");
   const [allowId, setAllowId] = useState("");
   const [checkEmail, setCheckEmail] = useState("");
+
+  const buildSignUp = () => {
+    const info = JSON.parse(localStorage.getItem("userInfo"));
+    console.log(info);
+    setUserName(info.UserName);
+    setNickname(info.Nickname);
+    setPassword(info.Password);
+    setCheckPwd(info.Password);
+    setPhoneNumber(info.PhoneNumber);
+    setEmail(info.Email);
+    setBirthDate(info.BirthDate);
+  };
 
   //   const onNameHandler = (e) => {
   //     setUserName(onlyKorean(e.currentTarget.value));
@@ -113,8 +134,12 @@ const SignUp = (info) => {
     alert("인증되었습니다.");
   };
 
+  const onBirthHandler = (e) => {
+    setBirthDate(e.currentTarget.value);
+  };
+
   const checkOnlyOne = (nowCheck) => {
-    const checkboxes = document.getElementsByName("sex");
+    const checkboxes = document.getElementsByName("gender");
     checkboxes.forEach((v, i) => {
       if (v["defaultValue"] !== nowCheck.value) {
         checkboxes[i].checked = false;
@@ -183,11 +208,6 @@ const SignUp = (info) => {
   };
 
   const storeInfo = () => {
-    localStorage.setItem("Nickname", nickname);
-  };
-
-  const infoHandler = (e) => {
-    e.preventDefault();
     const body = {
       Nickname: nickname,
       UserName: userName,
@@ -197,21 +217,32 @@ const SignUp = (info) => {
       BirthDate: birthDate,
       Gender: gender,
     };
-    console.log(body);
+    localStorage.setItem("userInfo", JSON.stringify(body));
   };
+
+  const infoHandler = (e) => {
+    e.preventDefault();
+    const body = {
+      Nickname: "",
+      UserName: "",
+      Password: "",
+      CheckPwd: "",
+      PhoneNumber: "",
+      Email: "",
+      BirthDate: "",
+      Gender: "",
+    };
+    localStorage.setItem("userInfo", JSON.stringify(body));
+  };
+
+  useEffect(() => {
+    buildSignUp();
+  }, []);
 
   return (
     <>
       <Nav />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          height: "100vh",
-        }}
-      >
+      <SignUpContainer>
         <form style={{ display: "flex", flexDirection: "column" }}>
           {/* <div>
             <label>이름</label>
@@ -317,7 +348,7 @@ const SignUp = (info) => {
               type="birthday"
               placeholder="YYYYMMDD 띄어쓰기 없이 입력"
               maxLength={8}
-              onChange={(e) => setBirthDate(e.currentTarget.value)}
+              onChange={onBirthHandler}
             />
           </div>
           <div>
@@ -325,8 +356,8 @@ const SignUp = (info) => {
             <label>남자</label>
             <input
               style={{ cursor: "pointer" }}
-              name="sex"
               type="checkbox"
+              name="gender"
               value="남자"
               onChange={(e) => {
                 checkOnlyOne(e.target);
@@ -336,8 +367,8 @@ const SignUp = (info) => {
             <label>여자</label>
             <input
               style={{ cursor: "pointer" }}
-              name="sex"
               type="checkbox"
+              name="gender"
               value="여자"
               onChange={(e) => {
                 checkOnlyOne(e.target);
@@ -372,10 +403,10 @@ const SignUp = (info) => {
           >
             그냥넘기기
           </Link>
-          <button onClick={infoHandler}>테스트 버튼</button>
+          <button onClick={infoHandler}>로컬스토리지 리셋</button>
           <Link to="/Login">로그인창</Link>
         </form>
-      </div>
+      </SignUpContainer>
     </>
   );
 };

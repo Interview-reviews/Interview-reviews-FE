@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { checkLogin } from "../API/LoginAPI";
 import Nav from "../components/Nav";
 import styled from "styled-components";
+import { useState } from "react";
 
 const LoginContainer = styled.div`
   margin-top: 8em;
@@ -16,8 +17,22 @@ const InputContainer = styled.div`
 `;
 
 const Login = () => {
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onIdHandler = (e) => {
+    setId(e.target.value);
+  };
+
+  const onPwdHandler = (e) => {
+    setPassword(e.target.value);
+  };
+
+  console.log(id, password);
+
   const attemptLogin = async () => {
-    const isAllow = await checkLogin();
+    const info = { UserName: id, Password: password };
+    const isAllow = await checkLogin(info);
     if (isAllow) {
     }
   };
@@ -31,10 +46,10 @@ const Login = () => {
         <InputContainer>
           <div>
             <div>
-              <input placeholder="아이디" />
+              <input placeholder="아이디" onChange={onIdHandler} />
             </div>
             <div>
-              <input placeholder="비밀번호" />
+              <input placeholder="비밀번호" onChange={onPwdHandler} />
             </div>
           </div>
           <div>
