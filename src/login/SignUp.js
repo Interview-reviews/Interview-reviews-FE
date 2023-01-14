@@ -4,18 +4,71 @@ import { checkId, checkNickname } from "../API/SignUpAPI";
 import Nav from "../components/Nav";
 import styled from "styled-components";
 
-const SignUpContainer = styled.div`
+const SignUpContainer = styled.fieldset`
   position: absolute;
-  top: 35%;
-  left: 50%;
-  width: 360px;
-  margin-left: -150px;
+  top: 30%;
+  left: 30%;
+  border: none;
+`;
+
+const Label = styled.label`
+  float: left;
+  font-weight: 550;
+  font-size: 16px;
+  line-height: 19px;
+  margin: 10px 0;
+  width: 140px;
+`;
+
+const EssentialMark = styled.i`
+  color: red;
+`;
+
+const InputContainer = styled.li`
+  list-style: none;
+  margin: 20px 0px;
 `;
 
 const SingUpFont = styled.div`
   font-weight: 600;
   font-size: 26px;
-  padding: 0 0 60px 120px;
+  margin: 0 0 60px 220px;
+`;
+
+const SignUpInput = styled.input`
+  font-weight: 530;
+  font-size: 14px;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  width: 335px;
+  height: 40px;
+  padding-left: 10px;
+`;
+
+const GenderCheck = styled.input`
+  float: left;
+  cursor: pointer;
+  height: 28px;
+  zoom: 1.5;
+  :checked {
+    accent-color: blue;
+  }
+`;
+
+const GenerLabel = styled.label`
+  font-weight: 550;
+  font-size: 16px;
+  line-height: 19px;
+  margin: 10px 50px;
+  float: left;
+`;
+
+const Agree = styled.input`
+  cursor: pointer;
+  height: 40px;
+  :checked {
+    accent-color: blue;
+  }
 `;
 
 const SignUp = (info) => {
@@ -248,6 +301,7 @@ const SignUp = (info) => {
   return (
     <>
       <Nav />
+
       <SignUpContainer>
         <SingUpFont>회원가입</SingUpFont>
         <form style={{ display: "flex", flexDirection: "column" }}>
@@ -266,132 +320,161 @@ const SignUp = (info) => {
               </p>
             )}
           </div> */}
-          <div>
-            <label>닉네임</label>
-            <input
-              value={nickname}
-              onChange={(e) => setNickname(e.currentTarget.value)}
-              placeholder="2자리 ~ 8자리"
-            />
-            <button style={{ cursor: "pointer" }} onClick={isAllowNickname}>
-              닉네임 중복 확인
-            </button>
-          </div>
-          <div>
-            <label>아이디</label>
-            <input
-              value={userName}
-              onChange={(e) => setUserName(e.currentTarget.value)}
-              placeholder="영문 6자리 ~ 12자리"
-            />
-            <button style={{ cursor: "pointer" }} onClick={isAllowId}>
-              아이디 중복 확인
-            </button>
-          </div>
-          <div>
-            <label>비밀번호</label>
-            <input
-              value={password}
-              onChange={(e) => setPassword(e.currentTarget.value)}
-              placeholder="비밀번호를 8자리 이상 20자리 이내로 설정해주세요."
-            />
-          </div>
-          <div>
-            <label>비밀번호 확인</label>
-            <input
-              value={checkPwd}
-              onChange={onCheckPwdHandler}
-              placeholder="입력하신 비밀번호와 동일하게 입력해주세요."
-            />
-            {isMatch === "" || isMatch ? (
-              ""
-            ) : (
-              <p style={{ fontSize: "12px", color: "red", display: "inline" }}>
-                비밀번호가 서로 일치하지 않습니다.
-              </p>
-            )}
-          </div>
-          <div>
-            <label>휴대번호</label>
-            <input
-              value={phoneNumber}
-              onChange={onPhoneNumberHandler}
-              maxLength={13}
-              placeholder="대쉬 (-) 로 구분하여 입력"
-            />
-            {/* <button style={{ cursor: "pointer" }} onClick={isAllowNickname}>
+          <ul>
+            <InputContainer>
+              <Label>
+                닉네임<EssentialMark>*</EssentialMark>
+              </Label>
+              <SignUpInput
+                value={nickname}
+                onChange={(e) => setNickname(e.currentTarget.value)}
+                placeholder="2자리 ~ 8자리"
+              />
+              <button style={{ cursor: "pointer" }} onClick={isAllowNickname}>
+                닉네임 중복 확인
+              </button>
+            </InputContainer>
+            <InputContainer>
+              <Label>
+                아이디<EssentialMark>*</EssentialMark>
+              </Label>
+              <SignUpInput
+                value={userName}
+                onChange={(e) => setUserName(e.currentTarget.value)}
+                placeholder="영문 6자리 ~ 12자리"
+              />
+              <button style={{ cursor: "pointer" }} onClick={isAllowId}>
+                아이디 중복 확인
+              </button>
+            </InputContainer>
+            <InputContainer>
+              <Label>
+                비밀번호<EssentialMark>*</EssentialMark>
+              </Label>
+              <SignUpInput
+                value={password}
+                onChange={(e) => setPassword(e.currentTarget.value)}
+                placeholder="비밀번호를 8자리 이상 20자리 이내로 설정해주세요."
+              />
+            </InputContainer>
+            <InputContainer>
+              <Label>
+                비밀번호 확인<EssentialMark>*</EssentialMark>
+              </Label>
+              <SignUpInput
+                value={checkPwd}
+                onChange={onCheckPwdHandler}
+                placeholder="입력하신 비밀번호와 동일하게 입력해주세요."
+              />
+              {isMatch === "" || isMatch ? (
+                ""
+              ) : (
+                <p
+                  style={{ fontSize: "12px", color: "red", display: "inline" }}
+                >
+                  비밀번호가 서로 일치하지 않습니다.
+                </p>
+              )}
+            </InputContainer>
+            <InputContainer>
+              <Label>
+                휴대번호<EssentialMark>*</EssentialMark>
+              </Label>
+              <SignUpInput
+                value={phoneNumber}
+                onChange={onPhoneNumberHandler}
+                maxLength={13}
+                placeholder="대쉬 (-) 로 구분하여 입력"
+              />
+              {/* <button style={{ cursor: "pointer" }} onClick={isAllowNickname}>
               본인 확인
             </button> */}
-            <i style={{ color: "gray", fontSize: "12px" }}>ex.010-xxxx-xxxx</i>
-          </div>
-          <div>
-            <label>이메일</label>
-            <input
-              value={email}
-              placeholder="@을 포함한 올바른 이메일을 입력해주세요"
-              onChange={(e) => setEmail(e.currentTarget.value)}
-            />
-            <button onClick={isAllowEmail}>이메일 확인</button>
-            {checkEmail === "" ? (
-              ""
-            ) : checkEmail ? (
-              <p style={{ fontSize: "12px", color: "blue", display: "inline" }}>
-                사용할 수 있는 이메일 입니다.
-              </p>
-            ) : (
-              <p style={{ fontSize: "12px", color: "red", display: "inline" }}>
-                사용할 수 없는 이메일입니다.
-              </p>
-            )}
-            {checkEmail && (
-              <div>
-                <input placeholder="인증번호를 입력해주세요" />{" "}
-                <button onClick={isVaildEmail}>인증하기</button>
-              </div>
-            )}
-          </div>
-          <div>
-            <label>생년월일</label>
-            <input
-              type="birthday"
-              placeholder="YYYYMMDD 띄어쓰기 없이 입력"
-              maxLength={8}
-              onChange={onBirthHandler}
-            />
-          </div>
-          <div>
-            <label style={{ paddingRight: "10px" }}>성별</label>
-            <label>남자</label>
-            <input
-              style={{ cursor: "pointer" }}
-              type="checkbox"
-              name="gender"
-              value="남자"
-              onChange={(e) => {
-                checkOnlyOne(e.target);
-                onSexHandler(e);
-              }}
-            />
-            <label>여자</label>
-            <input
-              style={{ cursor: "pointer" }}
-              type="checkbox"
-              name="gender"
-              value="여자"
-              onChange={(e) => {
-                checkOnlyOne(e.target);
-                onSexHandler(e);
-              }}
-            />
-          </div>
-          <div>
-            <label>이용약관 동의</label>
-            <input
-              style={{ cursor: "pointer" }}
-              type="checkbox"
-              onChange={(e) => setAgreeeService(e.currentTarget.value)}
-            />
-          </div>
+              <i style={{ color: "gray", fontSize: "12px" }}>
+                ex.010-xxxx-xxxx
+              </i>
+            </InputContainer>
+            <InputContainer>
+              <Label>
+                이메일<EssentialMark>*</EssentialMark>
+              </Label>
+              <SignUpInput
+                value={email}
+                placeholder="@을 포함한 올바른 이메일을 입력해주세요"
+                onChange={(e) => setEmail(e.currentTarget.value)}
+              />
+              <button onClick={isAllowEmail}>이메일 확인</button>
+              {checkEmail === "" ? (
+                ""
+              ) : checkEmail ? (
+                <p
+                  style={{ fontSize: "12px", color: "blue", display: "inline" }}
+                >
+                  사용할 수 있는 이메일 입니다.
+                </p>
+              ) : (
+                <p
+                  style={{ fontSize: "12px", color: "red", display: "inline" }}
+                >
+                  사용할 수 없는 이메일입니다.
+                </p>
+              )}
+              {checkEmail && (
+                <div style={{ margin: "10px 0 0 140px" }}>
+                  <SignUpInput placeholder="인증번호를 입력해주세요" />{" "}
+                  <button onClick={isVaildEmail}>인증하기</button>
+                </div>
+              )}
+            </InputContainer>
+            <InputContainer>
+              <Label>
+                생년월일<EssentialMark>*</EssentialMark>
+              </Label>
+              <SignUpInput
+                type="birthday"
+                placeholder="YYYYMMDD 띄어쓰기 없이 입력"
+                maxLength={8}
+                onChange={onBirthHandler}
+              />
+            </InputContainer>
+            <InputContainer>
+              <Label>
+                성별<EssentialMark>*</EssentialMark>
+              </Label>
+
+              <GenderCheck
+                type="radio"
+                name="gender"
+                value="남자"
+                onChange={(e) => {
+                  checkOnlyOne(e.target);
+                  onSexHandler(e);
+                }}
+              />
+              <GenerLabel>남자</GenerLabel>
+
+              <GenderCheck
+                type="radio"
+                name="gender"
+                value="여자"
+                onChange={(e) => {
+                  checkOnlyOne(e.target);
+                  onSexHandler(e);
+                }}
+              />
+
+              <GenerLabel>여자</GenerLabel>
+            </InputContainer>
+
+            <InputContainer>
+              <Label>
+                이용약관 동의<EssentialMark>*</EssentialMark>
+              </Label>
+              <Agree
+                type="checkbox"
+                onChange={(e) => setAgreeeService(e.currentTarget.value)}
+              />
+            </InputContainer>
+          </ul>
           <div>
             <Link
               to={{
