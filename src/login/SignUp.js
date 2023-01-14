@@ -5,11 +5,17 @@ import Nav from "../components/Nav";
 import styled from "styled-components";
 
 const SignUpContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  width: 360px;
+  margin-left: -150px;
+`;
+
+const SingUpFont = styled.div`
+  font-weight: 600;
+  font-size: 26px;
+  padding: 0 0 60px 120px;
 `;
 
 const SignUp = (info) => {
@@ -235,14 +241,15 @@ const SignUp = (info) => {
     localStorage.setItem("userInfo", JSON.stringify(body));
   };
 
-  useEffect(() => {
-    buildSignUp();
-  }, []);
+  //   useEffect(() => {
+  //     buildSignUp();
+  //   }, []);
 
   return (
     <>
       <Nav />
       <SignUpContainer>
+        <SingUpFont>회원가입</SingUpFont>
         <form style={{ display: "flex", flexDirection: "column" }}>
           {/* <div>
             <label>이름</label>
@@ -321,6 +328,7 @@ const SignUp = (info) => {
             <label>이메일</label>
             <input
               value={email}
+              placeholder="@을 포함한 올바른 이메일을 입력해주세요"
               onChange={(e) => setEmail(e.currentTarget.value)}
             />
             <button onClick={isAllowEmail}>이메일 확인</button>

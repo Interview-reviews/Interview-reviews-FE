@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import GlobalStyle from "./GlobalStyle";
 import FindId from "./login/FindId";
 import FindPassword from "./login/FindPassword";
 import Information from "./login/Information";
@@ -12,6 +13,7 @@ import Welcome from "./pages/Welcome";
 function App() {
   return (
     <>
+      <GlobalStyle />
       <Routes>
         <Route path="/" element={<Main />}></Route>
         <Route path="/Login" element={<Login />}></Route>

@@ -1,12 +1,19 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Header = styled.header`
+const TopHeader = styled.header`
   display: flex;
   padding: 20px;
+  font-weight: 550;
 `;
 
-const Navi = styled.nav``;
+const BottomHeader = styled.header`
+  display: flex;
+  padding: 20px;
+  font-weight: 550;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
+  width: 100%;
+`;
 
 const NavBar = styled.div`
   padding: 0 20px 0 20px;
@@ -24,34 +31,37 @@ const Review = styled.div`
   border-radius: 17.5px;
   color: white;
   background-color: #5c8aff;
+  &:hover {
+    opacity: 80%;
+    cursor: pointer;
+  }
 `;
 
 const Nav = () => {
   return (
     <>
-      <div>
-        <Header>
-          <NavBar>
-            <Link to="/" style={{ textDecoration: "none" }}>
-              로고가 들어갈 영역
-            </Link>
-          </NavBar>
-          <div style={{ flexGrow: "1" }}></div>
-          <NavBar>
-            {" "}
-            <Link to="/Login" style={{ textDecoration: "none" }}>
-              로그인
-            </Link>
-          </NavBar>
-          <NavBar>
-            {" "}
-            <Link to="/SignUp" style={{ textDecoration: "none" }}>
-              회원가입
-            </Link>
-          </NavBar>
-        </Header>
-      </div>
-      <Header>
+      <TopHeader>
+        <NavBar>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            로고가 들어갈 영역
+          </Link>
+        </NavBar>
+        <div style={{ flexGrow: "1" }}></div>
+        <NavBar>
+          {" "}
+          <Link to="/Login" style={{ textDecoration: "none" }}>
+            로그인
+          </Link>
+        </NavBar>
+        <NavBar>
+          {" "}
+          <Link to="/SignUp" style={{ textDecoration: "none" }}>
+            회원가입
+          </Link>
+        </NavBar>
+      </TopHeader>
+
+      <BottomHeader>
         <NavBar>
           {" "}
           <Link to="/" style={{ textDecoration: "none" }}>
@@ -62,7 +72,7 @@ const Nav = () => {
         <NavBar>커뮤니티</NavBar>
         <NavBar>공지사항</NavBar>
         <Review>후기 작성</Review>
-      </Header>
+      </BottomHeader>
     </>
   );
 };
