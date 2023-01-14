@@ -12,7 +12,7 @@ const SignUpContainer = styled.fieldset`
 `;
 
 const Label = styled.label`
-  float: left;
+  display: inline-block;
   font-weight: 550;
   font-size: 16px;
   line-height: 19px;
@@ -45,11 +45,30 @@ const SignUpInput = styled.input`
   padding-left: 10px;
 `;
 
-const GenderCheck = styled.input`
-  float: left;
+const CheckButton = styled.button`
   cursor: pointer;
-  height: 28px;
-  zoom: 1.5;
+  width: 120px;
+  height: 40px;
+  color: #5c8aff;
+  border: solid 1px #5c8aff;
+  border-radius: 10px;
+  background: #ffff;
+  margin-left: 10px;
+  &:hover {
+    opacity: 70%;
+    font-weight: 600;
+  }
+`;
+
+const EmailCheck = styled.p`
+  font-size: 12px;
+  display: inline;
+  margin-left: 10px;
+`;
+
+const GenderCheck = styled.input`
+  cursor: pointer;
+
   :checked {
     accent-color: blue;
   }
@@ -59,16 +78,27 @@ const GenerLabel = styled.label`
   font-weight: 550;
   font-size: 16px;
   line-height: 19px;
-  margin: 10px 50px;
-  float: left;
+  margin: 0 100px 0 10px;
 `;
 
 const Agree = styled.input`
   cursor: pointer;
-  height: 40px;
+  height: 20px;
   :checked {
     accent-color: blue;
   }
+`;
+const AgreeGuide = styled.p`
+  margin-top: 12px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+`;
+const AgreeGuide2 = styled.p`
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  margin-top: 10px;
 `;
 
 const SignUp = (info) => {
@@ -330,9 +360,9 @@ const SignUp = (info) => {
                 onChange={(e) => setNickname(e.currentTarget.value)}
                 placeholder="2자리 ~ 8자리"
               />
-              <button style={{ cursor: "pointer" }} onClick={isAllowNickname}>
+              <CheckButton onClick={isAllowNickname}>
                 닉네임 중복 확인
-              </button>
+              </CheckButton>
             </InputContainer>
             <InputContainer>
               <Label>
@@ -343,9 +373,9 @@ const SignUp = (info) => {
                 onChange={(e) => setUserName(e.currentTarget.value)}
                 placeholder="영문 6자리 ~ 12자리"
               />
-              <button style={{ cursor: "pointer" }} onClick={isAllowId}>
+              <CheckButton style={{ cursor: "pointer" }} onClick={isAllowId}>
                 아이디 중복 확인
-              </button>
+              </CheckButton>
             </InputContainer>
             <InputContainer>
               <Label>
@@ -384,14 +414,8 @@ const SignUp = (info) => {
                 value={phoneNumber}
                 onChange={onPhoneNumberHandler}
                 maxLength={13}
-                placeholder="대쉬 (-) 로 구분하여 입력"
+                placeholder="010-xxxx-xxxx 대쉬 (-) 로 구분하여 입력"
               />
-              {/* <button style={{ cursor: "pointer" }} onClick={isAllowNickname}>
-              본인 확인
-            </button> */}
-              <i style={{ color: "gray", fontSize: "12px" }}>
-                ex.010-xxxx-xxxx
-              </i>
             </InputContainer>
             <InputContainer>
               <Label>
@@ -402,26 +426,26 @@ const SignUp = (info) => {
                 placeholder="@을 포함한 올바른 이메일을 입력해주세요"
                 onChange={(e) => setEmail(e.currentTarget.value)}
               />
-              <button onClick={isAllowEmail}>이메일 확인</button>
+              <CheckButton onClick={isAllowEmail}>이메일 확인</CheckButton>
               {checkEmail === "" ? (
                 ""
               ) : checkEmail ? (
-                <p
-                  style={{ fontSize: "12px", color: "blue", display: "inline" }}
-                >
+                <EmailCheck style={{ color: "blue" }}>
                   사용할 수 있는 이메일 입니다.
-                </p>
+                </EmailCheck>
               ) : (
-                <p
-                  style={{ fontSize: "12px", color: "red", display: "inline" }}
+                <EmailCheck
+                  style={{
+                    color: "red",
+                  }}
                 >
                   사용할 수 없는 이메일입니다.
-                </p>
+                </EmailCheck>
               )}
               {checkEmail && (
                 <div style={{ margin: "10px 0 0 140px" }}>
                   <SignUpInput placeholder="인증번호를 입력해주세요" />{" "}
-                  <button onClick={isVaildEmail}>인증하기</button>
+                  <CheckButton onClick={isVaildEmail}>인증하기</CheckButton>
                 </div>
               )}
             </InputContainer>
@@ -466,13 +490,33 @@ const SignUp = (info) => {
             </InputContainer>
 
             <InputContainer>
-              <Label>
-                이용약관 동의<EssentialMark>*</EssentialMark>
-              </Label>
-              <Agree
-                type="checkbox"
-                onChange={(e) => setAgreeeService(e.currentTarget.value)}
-              />
+              <div
+                style={{
+                  width: "22%",
+                  float: "left",
+                }}
+              >
+                <Label>
+                  이용약관 동의<EssentialMark>*</EssentialMark>
+                </Label>
+                <Agree
+                  style={{ width: "15px", verticalAlign: "middle" }}
+                  type="checkbox"
+                  onChange={(e) => setAgreeeService(e.currentTarget.value)}
+                />
+              </div>
+              <div
+                style={{
+                  float: "left",
+                  width: "70%",
+                }}
+              >
+                <AgreeGuide>가입약관에 모두 동의합니다.</AgreeGuide>
+                <AgreeGuide2>
+                  이용약관(필수), 개인정보취급방침(필수), 마케팅정보
+                  수집동의(선택)
+                </AgreeGuide2>
+              </div>
             </InputContainer>
           </ul>
           <div>
