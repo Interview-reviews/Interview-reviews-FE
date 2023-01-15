@@ -1,5 +1,5 @@
 /**
- * @author 윤수현
+ * @author soohyun-dev
  * @see 닉네임체크 , 보낼 데이터 : Nickname
  * @todo 백엔드통신
  * @returns {boolean}
@@ -19,7 +19,7 @@ export async function checkNickname(formData) {
 }
 
 /**
- * @author 윤수현
+ * @author soohyun-dev
  * @see 아이디체크 , 보낼 데이터 : Id
  * @todo 백엔드통신
  * @returns {boolean}
@@ -39,7 +39,7 @@ export async function checkId(formData) {
 }
 
 /**
- * @author 윤수현
+ * @author soohyun-dev
  * @see 이메일본인인증 , 보낼 데이터 : Email
  * @todo 백엔드통신
  * @returns {boolean}
