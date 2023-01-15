@@ -57,6 +57,7 @@ const CheckButton = styled.button`
   &:hover {
     opacity: 70%;
     font-weight: 600;
+    color: white;
   }
 `;
 
@@ -99,6 +100,21 @@ const AgreeGuide2 = styled.p`
   font-size: 12px;
   line-height: 14px;
   margin-top: 10px;
+`;
+
+const NextButton = styled.button`
+  margin-top: 114px;
+  width: 340px;
+  height: 47px;
+  background: #b9b9b9;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  &:hover {
+    opacity: 70%;
+    transition: 0.7s;
+  }
 `;
 
 const SignUp = (info) => {
@@ -518,18 +534,18 @@ const SignUp = (info) => {
                 </AgreeGuide2>
               </div>
             </InputContainer>
+            <InputContainer>
+              <Link
+                to={{
+                  pathname: "/Information",
+                }}
+                style={{ cursor: "pointer" }}
+                onClick={isAllowNext}
+              >
+                <NextButton>다음</NextButton>
+              </Link>
+            </InputContainer>
           </ul>
-          <div>
-            <Link
-              to={{
-                pathname: "/Information",
-              }}
-              style={{ cursor: "pointer" }}
-              onClick={isAllowNext}
-            >
-              <button>다음</button>
-            </Link>
-          </div>
           <Link
             to={{
               pathname: "/Information",
