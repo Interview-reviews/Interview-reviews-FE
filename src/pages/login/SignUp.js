@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { checkId, checkNickname } from "../../API/SignUpAPI";
+import { checkId, checkNickname, sendEmail } from "../../API/SignUpAPI";
 import Nav from "../../components/Nav";
 import styled from "styled-components";
 
@@ -204,21 +204,10 @@ const SignUp = (info) => {
     e.preventDefault();
     if (regex.test(email)) {
       setCheckEmail(true);
-      sendEmail();
+      const result = sendEmail();
     } else {
       setCheckEmail(false);
     }
-  };
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-    fetch("보낼 주소", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(email),
-    })
-      .then((res) => res.json())
-      .then((json) => {});
   };
 
   const isVaildEmail = (e) => {
@@ -414,7 +403,7 @@ const SignUp = (info) => {
                 placeholder="@을 포함한 올바른 이메일을 입력해주세요"
                 onChange={(e) => setEmail(e.currentTarget.value)}
               />
-              <CheckButton onClick={isAllowEmail}>이메일 확인</CheckButton>
+              <CheckButton onClick={isAllowEmail}>이메일 인증</CheckButton>
               {checkEmail === "" ? (
                 ""
               ) : checkEmail ? (

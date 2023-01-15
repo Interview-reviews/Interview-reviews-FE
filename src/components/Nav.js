@@ -71,7 +71,9 @@ const Nav = () => {
         <NavBar>후기글</NavBar>
         <NavBar>커뮤니티</NavBar>
         <NavBar>공지사항</NavBar>
-        <Review>후기 작성</Review>
+        <Link to="/WriteReview">
+          <Review>후기 작성</Review>
+        </Link>
       </BottomHeader>
     </>
   );

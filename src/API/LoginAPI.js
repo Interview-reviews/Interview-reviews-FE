@@ -1,3 +1,10 @@
+/**
+ * @author 윤수현
+ * @see 로그인체크 , 보낼 데이터 : {Id, Password}
+ * @todo 백엔드통신
+ * @returns {JWT Token}
+ */
+
 export async function checkLogin(formData) {
   console.log(formData);
   const response = await fetch(``, {
