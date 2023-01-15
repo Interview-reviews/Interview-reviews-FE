@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { checkLogin } from "../API/LoginAPI";
-import Nav from "../components/Nav";
+import { checkLogin } from "../../API/LoginAPI";
+import Nav from "../../components/Nav";
 import styled from "styled-components";
 import { useState } from "react";
 

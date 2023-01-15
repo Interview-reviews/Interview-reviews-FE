@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { checkId, checkNickname } from "../API/SignUpAPI";
-import Nav from "../components/Nav";
+import { checkId, checkNickname } from "../../API/SignUpAPI";
+import Nav from "../../components/Nav";
 import styled from "styled-components";
 
 const SignUpContainer = styled.fieldset`
@@ -134,6 +134,7 @@ const SignUp = (info) => {
   const [checkEmail, setCheckEmail] = useState("");
 
   const buildSignUp = () => {
+    // 이전 화면으로 돌아올 경우 입력 정보 유지
     const info = JSON.parse(localStorage.getItem("userInfo"));
     console.log(info);
     setUserName(info.UserName);
@@ -144,20 +145,6 @@ const SignUp = (info) => {
     setEmail(info.Email);
     setBirthDate(info.BirthDate);
   };
-
-  //   const onNameHandler = (e) => {
-  //     setUserName(onlyKorean(e.currentTarget.value));
-  //   };
-
-  //   const onlyKorean = (value) => {
-  //     const pattern = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
-  //     if (pattern.test(value)) {
-  //       setNameCheck(false);
-  //       return userName;
-  //     }
-  //     setNameCheck(true);
-  //     return value;
-  //   };
 
   const onCheckPwdHandler = (e) => {
     setCheckPwd(e.currentTarget.value);
@@ -351,21 +338,6 @@ const SignUp = (info) => {
       <SignUpContainer>
         <SingUpFont>회원가입</SingUpFont>
         <form style={{ display: "flex", flexDirection: "column" }}>
-          {/* <div>
-            <label>이름</label>
-            <input
-              value={userName}
-              onChange={onNameHandler}
-              placeholder="한글 이름만 입력"
-            />
-            {nameCheck === "" || nameCheck ? (
-              ""
-            ) : (
-              <p style={{ fontSize: "12px", color: "red", display: "inline" }}>
-                한글만 입력 가능 합니다.
-              </p>
-            )}
-          </div> */}
           <ul>
             <InputContainer>
               <Label>
