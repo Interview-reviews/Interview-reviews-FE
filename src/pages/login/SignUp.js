@@ -69,7 +69,6 @@ const EmailCheck = styled.p`
 
 const GenderCheck = styled.input`
   cursor: pointer;
-
   :checked {
     accent-color: blue;
   }
