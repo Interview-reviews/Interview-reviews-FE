@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
-import { checkLogin } from "../../API/LoginAPI";
-import Nav from "../../components/Nav";
-import styled from "styled-components";
-import { useState } from "react";
+import { Link } from 'react-router-dom';
+import { checkLogin } from '../../API/LoginAPI';
+import Nav from '../../components/Nav';
+import styled from 'styled-components';
+import { useState } from 'react';
 
 const LoginContainer = styled.div`
   position: absolute;
@@ -58,14 +58,14 @@ const ClickButton = styled.button`
 `;
 
 const Login = () => {
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
+  const [id, setId] = useState('');
+  const [password, setPassword] = useState('');
 
-  const onIdHandler = (e) => {
+  const onIdHandler = e => {
     setId(e.target.value);
   };
 
-  const onPwdHandler = (e) => {
+  const onPwdHandler = e => {
     setPassword(e.target.value);
   };
 
@@ -86,43 +86,29 @@ const Login = () => {
         <InputContainer>
           <div>
             <div>
-              <LoginInput
-                type="text"
-                placeholder="아이디를 입력해주세요."
-                onChange={onIdHandler}
-              />
+              <LoginInput type="text" placeholder="아이디를 입력해주세요." onChange={onIdHandler} />
             </div>
             <div>
-              <LoginInput
-                type="text"
-                placeholder="비밀번호를 입력해주세요."
-                onChange={onPwdHandler}
-              />
+              <LoginInput type="text" placeholder="비밀번호를 입력해주세요." onChange={onPwdHandler} />
             </div>
           </div>
         </InputContainer>
 
         <FindContainer>
-          <Link
-            style={{ textDecoration: "none", paddingRight: "15px" }}
-            to="/FindId"
-          >
+          <Link style={{ textDecoration: 'none', paddingRight: '15px' }} to="/FindId">
             <Find>아이디 찾기</Find>
           </Link>
-          <Link style={{ textDecoration: "none" }} to="/FindPassword">
+          <Link style={{ textDecoration: 'none' }} to="/FindPassword">
             <Find>비밀번호 찾기</Find>
           </Link>
         </FindContainer>
         <div>
-          <ClickButton
-            onClick={attemptLogin}
-            style={{ background: "#5c8aff", marginBottom: "10px" }}
-          >
+          <ClickButton onClick={attemptLogin} style={{ background: '#5c8aff', marginBottom: '10px' }}>
             로그인
           </ClickButton>
         </div>
         <Link to="/SignUp">
-          <ClickButton style={{ background: "#232323" }}>회원가입</ClickButton>
+          <ClickButton style={{ background: '#232323' }}>회원가입</ClickButton>
         </Link>
       </LoginContainer>
     </>

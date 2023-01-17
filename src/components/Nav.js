@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const TopHeader = styled.header`
   display: flex;
@@ -42,20 +42,20 @@ const Nav = () => {
     <>
       <TopHeader>
         <NavBar>
-          <Link to="/" style={{ textDecoration: "none" }}>
+          <Link to="/" style={{ textDecoration: 'none' }}>
             로고가 들어갈 영역
           </Link>
         </NavBar>
-        <div style={{ flexGrow: "1" }}></div>
+        <div style={{ flexGrow: '1' }}></div>
         <NavBar>
-          {" "}
-          <Link to="/Login" style={{ textDecoration: "none" }}>
+          {' '}
+          <Link to="/Login" style={{ textDecoration: 'none' }}>
             로그인
           </Link>
         </NavBar>
         <NavBar>
-          {" "}
-          <Link to="/SignUp" style={{ textDecoration: "none" }}>
+          {' '}
+          <Link to="/SignUp" style={{ textDecoration: 'none' }}>
             회원가입
           </Link>
         </NavBar>
@@ -63,8 +63,8 @@ const Nav = () => {
 
       <BottomHeader>
         <NavBar>
-          {" "}
-          <Link to="/" style={{ textDecoration: "none" }}>
+          {' '}
+          <Link to="/" style={{ textDecoration: 'none' }}>
             홈
           </Link>
         </NavBar>
