@@ -98,17 +98,25 @@ const WriteReview = () => {
             <InputContainer>
               <Label>면접유형</Label>
               <input type="checkbox" />
+              일반 면접
               <input type="checkbox" />
+              인성 면접
               <input type="checkbox" />
+              PT 면접
               <input type="checkbox" />
+              토론 면접
               <input type="checkbox" />
+              임원 면접
               <input type="checkbox" />
+              실무 과제 및 시험
             </InputContainer>
             <hr />
             <InputContainer>
               <Label>면접 당시 경력</Label>
               <input type="checkbox" />
+              신입
               <input type="checkbox" />
+              경력
             </InputContainer>
             <hr />
             <InputContainer>
