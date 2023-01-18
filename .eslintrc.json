@@ -10,5 +10,6 @@
     "sourceType": "module"
   },
   "plugins": ["react"],
-  "rules": {}
+  "rules": {},
+  "parser": "babel-eslint"
 }

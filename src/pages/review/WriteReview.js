@@ -120,13 +120,6 @@ const WriteReview = () => {
             </InputContainer>
             <hr />
             <InputContainer>
-              <Label>면접 당시 경력</Label>
-              <button>쉬움</button>
-              <button>보통</button>
-              <button>어려움</button>
-            </InputContainer>
-            <hr />
-            <InputContainer>
               <Label>면접 난이도</Label>
               <button>쉬움</button>
               <button>보통</button>

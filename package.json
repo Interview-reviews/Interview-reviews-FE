@@ -44,6 +44,7 @@
     "eslint": "^8.32.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-html": "^7.1.0",
     "eslint-plugin-import": "^2.27.4",
     "eslint-plugin-jsx-a11y": "^6.7.1",
@@ -59,6 +60,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Interview-reviews/Interview-reviews-FE/issues"
-  },
-  "homepage": "https://github.com/Interview-reviews/Interview-reviews-FE#readme"
+  }
 }
