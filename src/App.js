@@ -1,15 +1,15 @@
-import { Route, Routes } from "react-router-dom";
-import GlobalStyle from "./GlobalStyle";
-import FindId from "./pages/login/FindId";
-import FindPassword from "./pages/login/FindPassword";
-import Information from "./pages/login/Information";
-import Login from "./pages/login/Login";
-import ResetPassword from "./pages/login/ResetPassword";
-import SignUp from "./pages/login/SignUp";
-import Main from "./pages/Main";
-import NotFound from "./pages/NotFound";
-import WriteReview from "./pages/review/WriteReview";
-import Welcome from "./pages/Welcome";
+import { Route, Routes } from 'react-router-dom';
+import GlobalStyle from './GlobalStyle';
+import FindId from './pages/login/FindId';
+import FindPassword from './pages/login/FindPassword';
+import Information from './pages/login/Information';
+import Login from './pages/login/Login';
+import ResetPassword from './pages/login/ResetPassword';
+import SignUp from './pages/login/SignUp';
+import Main from './pages/Main';
+import NotFound from './pages/NotFound';
+import WriteReview from './pages/review/WriteReview';
+import Welcome from './pages/Welcome';
 
 function App() {
   return (
