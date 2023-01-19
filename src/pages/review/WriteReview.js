@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { useState } from 'react';
 import styled from 'styled-components';
 import Nav from '../../components/Nav';
@@ -68,9 +70,80 @@ const CheckButton = styled.button`
 `;
 
 const WriteReview = () => {
+  const YEAR = Array.from({ length: 9 }, (_, i) => i + 2015);
+  const HALF = ['상반기', '하반기'];
   const [company, setCompany] = useState('');
+  const [job, setJob] = useState('');
+  const [support, setSupport] = useState('');
+  const [interview, setInterview] = useState({
+    일반면접: false,
+    인성면접: false,
+    PT면접: false,
+    토론면접: false,
+    임원면접: false,
+    실무과제및시험: false,
+  });
+  const [career, setCareer] = useState('');
+  const [level, setLevel] = useState('');
+  const [result, setResult] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+
+  const onChangeInterview = e => {
+    const target = e.currentTarget.value;
+    const tmp = { ...interview };
+    tmp[target] = !tmp[target];
+    setInterview(tmp);
+  };
+
+  const checkOnlyOne = nowCheck => {
+    const checkboxes = document.getElementsByName('career');
+    checkboxes.forEach((v, i) => {
+      if (v['defaultValue'] !== nowCheck.value) {
+        checkboxes[i].checked = false;
+      }
+    });
+  };
+
+  const onLevelHandler = e => {
+    e.preventDefault();
+    setLevel(e.currentTarget.value);
+    const clickButton = document.getElementsByName('level');
+    clickButton.forEach((btn, idx) => {
+      if (btn.value === e.currentTarget.value) {
+        document.getElementById(`levelBtn${idx}`).style.backgroundColor = '#5C8AFF';
+      } else {
+        document.getElementById(`levelBtn${idx}`).style.backgroundColor = '';
+      }
+    });
+  };
+
+  const onResultHandler = e => {
+    e.preventDefault();
+    setResult(e.currentTarget.value);
+    const clickButton = document.getElementsByName('result');
+    clickButton.forEach((btn, idx) => {
+      if (btn.value === e.currentTarget.value) {
+        document.getElementById(`resultBtn${idx}`).style.backgroundColor = '#5C8AFF';
+      } else {
+        document.getElementById(`resultBtn${idx}`).style.backgroundColor = '';
+      }
+    });
+  };
+
+  const info = {
+    Company: company,
+    Job: job,
+    Support: support,
+    Interview: interview,
+    Career: career,
+    Level: level,
+    Result: result,
+    Title: title,
+    Content: content,
+  };
+
+  console.log(info);
 
   return (
     <>
@@ -86,51 +159,96 @@ const WriteReview = () => {
             <hr />
             <InputContainer>
               <Label>지원한 직무</Label>
-              <SupportWrite placeholder="지원한 직무를 선택해주세요." />
-              <CheckButton>직무 선택</CheckButton>
+              <select onChange={e => setJob(e.currentTarget.value)}>
+                <option selected value={''}>
+                  지원한 직무를 선택해주세요.
+                </option>
+                <option>프론트엔드</option>
+                <option>백엔드</option>
+                <option>빅데이터</option>
+                <option>AI</option>
+                <option>정보보안</option>
+              </select>
             </InputContainer>
             <hr />
             <InputContainer>
               <Label>지원시기</Label>
-              <SupportWrite placeholder="지원시기 선택" />
+              <select onChange={e => setSupport(e.currentTarget.value)} value={support}>
+                <option selected value={''}>
+                  지원한시기를 선택해주세요
+                </option>
+                {YEAR.map(year =>
+                  HALF.map(half => (
+                    <option value={`${year}년 ${half}`} key={`${year}년${half}`}>
+                      {year}년 {half}
+                    </option>
+                  ))
+                )}
+              </select>
             </InputContainer>
             <hr />
             <InputContainer>
               <Label>면접유형</Label>
-              <input type="checkbox" />
+              <input type="checkbox" value="일반면접" onChange={e => onChangeInterview(e)} />
               일반 면접
-              <input type="checkbox" />
+              <input type="checkbox" value="인성면접" onChange={e => onChangeInterview(e)} />
               인성 면접
-              <input type="checkbox" />
+              <input type="checkbox" value="PT면접" onChange={e => onChangeInterview(e)} />
               PT 면접
-              <input type="checkbox" />
+              <input type="checkbox" value="토론면접" onChange={e => onChangeInterview(e)} />
               토론 면접
-              <input type="checkbox" />
+              <input type="checkbox" value="임원면접" onChange={e => onChangeInterview(e)} />
               임원 면접
-              <input type="checkbox" />
+              <input type="checkbox" value="실무과제및시험" onChange={e => onChangeInterview(e)} />
               실무 과제 및 시험
             </InputContainer>
             <hr />
             <InputContainer>
               <Label>면접 당시 경력</Label>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                name="career"
+                value="신입"
+                onChange={e => {
+                  checkOnlyOne(e.target), setCareer(e.currentTarget.value);
+                }}
+              />
               신입
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                name="career"
+                value="경력"
+                onChange={e => {
+                  checkOnlyOne(e.target), setCareer(e.currentTarget.value);
+                }}
+              />
               경력
             </InputContainer>
             <hr />
             <InputContainer>
               <Label>면접 난이도</Label>
-              <button>쉬움</button>
-              <button>보통</button>
-              <button>어려움</button>
+              <button name="level" id="levelBtn0" value="쉬움" onClick={onLevelHandler}>
+                쉬움
+              </button>
+              <button name="level" id="levelBtn1" value="보통" onClick={onLevelHandler}>
+                보통
+              </button>
+              <button name="level" id="levelBtn2" value="어려움" onClick={onLevelHandler}>
+                어려움
+              </button>
             </InputContainer>
             <hr />
             <InputContainer>
               <Label>합격 여부</Label>
-              <button>합격</button>
-              <button>대기중</button>
-              <button>불합격</button>
+              <button name="result" id="resultBtn0" value="합격" onClick={onResultHandler}>
+                합격
+              </button>
+              <button name="result" id="resultBtn1" value="대기중" onClick={onResultHandler}>
+                대기중
+              </button>
+              <button name="result" id="resultBtn2" value="불합격" onClick={onResultHandler}>
+                불합격
+              </button>
             </InputContainer>
             <hr />
             <InputContainer>
