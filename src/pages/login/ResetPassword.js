@@ -1,4 +1,5 @@
-import Nav from "../../components/Nav";
+/* eslint-disable */
+import Nav from '../../components/Nav';
 
 const ResetPassword = () => {
   return (

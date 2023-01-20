@@ -110,11 +110,8 @@ const WriteReview = () => {
     setLevel(e.currentTarget.value);
     const clickButton = document.getElementsByName('level');
     clickButton.forEach((btn, idx) => {
-      if (btn.value === e.currentTarget.value) {
-        document.getElementById(`levelBtn${idx}`).style.backgroundColor = '#5C8AFF';
-      } else {
-        document.getElementById(`levelBtn${idx}`).style.backgroundColor = '';
-      }
+      document.getElementById(`levelBtn${idx}`).style.backgroundColor =
+        btn.value === e.currentTarget.value ? '#5C8AFF' : '';
     });
   };
 
@@ -123,12 +120,21 @@ const WriteReview = () => {
     setResult(e.currentTarget.value);
     const clickButton = document.getElementsByName('result');
     clickButton.forEach((btn, idx) => {
-      if (btn.value === e.currentTarget.value) {
-        document.getElementById(`resultBtn${idx}`).style.backgroundColor = '#5C8AFF';
-      } else {
-        document.getElementById(`resultBtn${idx}`).style.backgroundColor = '';
-      }
+      document.getElementById(`resultBtn${idx}`).style.backgroundColor =
+        btn.value === e.currentTarget.value ? '#5C8AFF' : '';
     });
+  };
+
+  const onSubmitHandler = e => {
+    e.preventDefault();
+    let storage = [];
+    if (localStorage.getItem('reviewInfo') !== null) {
+      storage = JSON.parse(localStorage.getItem('reviewInfo'));
+    }
+    const result = [...storage, info];
+    console.log(localStorage);
+    localStorage.setItem('reviewInfo', JSON.stringify(result));
+    console.log(JSON.parse(localStorage.getItem('reviewInfo')));
   };
 
   const info = {
@@ -264,6 +270,7 @@ const WriteReview = () => {
               />
             </InputContainer>
           </ul>
+          <button onClick={onSubmitHandler}>작성하기</button>
         </form>
       </WriteContainer>
     </>

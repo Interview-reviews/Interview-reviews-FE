@@ -12,7 +12,6 @@ const BottomHeader = styled.header`
   padding: 20px;
   font-weight: 550;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
-  width: 100%;
 `;
 
 const NavBar = styled.div`
@@ -68,7 +67,12 @@ const Nav = () => {
             홈
           </Link>
         </NavBar>
-        <NavBar>후기글</NavBar>
+        <NavBar>
+          {' '}
+          <Link to="/Review" style={{ textDecoration: 'none' }}>
+            후기글
+          </Link>
+        </NavBar>
         <NavBar>커뮤니티</NavBar>
         <NavBar>공지사항</NavBar>
         <Link to="/WriteReview">
