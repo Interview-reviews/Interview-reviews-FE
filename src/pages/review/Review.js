@@ -5,7 +5,7 @@ import Nav from '../../components/Nav';
 import ReviewPosting from './ReviewPosting';
 
 const reviewTitle = css`
-  padding: 20px 40px;
+  padding: 40px 40px;
   font-size: 32px;
   font-weight: 600;
 `;

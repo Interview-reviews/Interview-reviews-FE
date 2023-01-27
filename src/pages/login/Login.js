@@ -1,10 +1,13 @@
+/* eslint-disable */
+/** @jsxImportSource @emotion/react */
+import { jsx, css } from '@emotion/react';
 import { Link } from 'react-router-dom';
-import { checkLogin } from '../../API/LoginAPI';
-import Nav from '../../components/Nav';
 import styled from 'styled-components';
 import { useState } from 'react';
+import { checkLogin } from '../../API/LoginAPI';
+import Nav from '../../components/Nav';
 
-const LoginContainer = styled.div`
+const loginContainer = css`
   position: absolute;
   top: 35%;
   left: 50%;
@@ -12,17 +15,17 @@ const LoginContainer = styled.div`
   margin-left: -150px;
 `;
 
-const LoginFont = styled.div`
+const loginFont = css`
   font-weight: 600;
   font-size: 26px;
   padding: 0 0 60px 120px;
 `;
 
-const InputContainer = styled.div`
+const inputContainer = css`
   display: inline;
 `;
 
-const LoginInput = styled.input`
+const loginInput = css`
   font-weight: 530;
   font-size: 14px;
   border: 1px solid #eaeaea;
@@ -32,19 +35,19 @@ const LoginInput = styled.input`
   padding-left: 10px;
 `;
 
-const FindContainer = styled.div`
+const findContainer = css`
   display: flex;
   justify-content: flex-end;
   padding: 20px;
   font-size: 13px;
 `;
 
-const Find = styled.div`
+const find = css`
   font-weight: 400;
   color: gray;
 `;
 
-const ClickButton = styled.button`
+const clickButton = css`
   border: none;
   border-radius: 8px;
   color: white;
@@ -80,37 +83,39 @@ const Login = () => {
   return (
     <>
       <Nav />
-      <LoginContainer>
-        <LoginFont>로그인</LoginFont>
+      <div css={loginContainer}>
+        <div css={loginFont}>로그인</div>
 
-        <InputContainer>
+        <div css={inputContainer}>
           <div>
             <div>
-              <LoginInput type="text" placeholder="아이디를 입력해주세요." onChange={onIdHandler} />
+              <input css={loginInput} type="text" placeholder="아이디를 입력해주세요." onChange={onIdHandler} />
             </div>
             <div>
-              <LoginInput type="text" placeholder="비밀번호를 입력해주세요." onChange={onPwdHandler} />
+              <input css={loginInput} type="text" placeholder="비밀번호를 입력해주세요." onChange={onPwdHandler} />
             </div>
           </div>
-        </InputContainer>
+        </div>
 
-        <FindContainer>
+        <div css={findContainer}>
           <Link style={{ textDecoration: 'none', paddingRight: '15px' }} to="/FindId">
-            <Find>아이디 찾기</Find>
+            <div css={find}>아이디 찾기</div>
           </Link>
           <Link style={{ textDecoration: 'none' }} to="/FindPassword">
-            <Find>비밀번호 찾기</Find>
+            <div css={find}>비밀번호 찾기</div>
           </Link>
-        </FindContainer>
+        </div>
         <div>
-          <ClickButton onClick={attemptLogin} style={{ background: '#5c8aff', marginBottom: '10px' }}>
+          <button css={clickButton} onClick={attemptLogin} style={{ background: '#5c8aff', marginBottom: '10px' }}>
             로그인
-          </ClickButton>
+          </button>
         </div>
         <Link to="/SignUp">
-          <ClickButton style={{ background: '#232323' }}>회원가입</ClickButton>
+          <button css={clickButton} style={{ background: '#232323' }}>
+            회원가입
+          </button>
         </Link>
-      </LoginContainer>
+      </div>
     </>
   );
 };

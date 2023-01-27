@@ -1,24 +1,27 @@
+/* eslint-disable */
+/** @jsxImportSource @emotion/react */
+import { jsx, css } from '@emotion/react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const TopHeader = styled.header`
+const topHeader = css`
   display: flex;
   padding: 20px;
   font-weight: 550;
 `;
 
-const BottomHeader = styled.header`
+const bottomHeader = css`
   display: flex;
   padding: 20px;
   font-weight: 550;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
 `;
 
-const NavBar = styled.div`
+const navBar = css`
   padding: 0 20px 0 20px;
 `;
 
-const Review = styled.div`
+const review = css`
   padding: 10px 20px 0 20px;
   text-align: center;
   position: absolute;
@@ -36,51 +39,49 @@ const Review = styled.div`
   }
 `;
 
-const Nav = () => {
-  return (
-    <>
-      <TopHeader>
-        <NavBar>
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            로고가 들어갈 영역
-          </Link>
-        </NavBar>
-        <div style={{ flexGrow: '1' }}></div>
-        <NavBar>
-          {' '}
-          <Link to="/Login" style={{ textDecoration: 'none' }}>
-            로그인
-          </Link>
-        </NavBar>
-        <NavBar>
-          {' '}
-          <Link to="/SignUp" style={{ textDecoration: 'none' }}>
-            회원가입
-          </Link>
-        </NavBar>
-      </TopHeader>
-
-      <BottomHeader>
-        <NavBar>
-          {' '}
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            홈
-          </Link>
-        </NavBar>
-        <NavBar>
-          {' '}
-          <Link to="/Review" style={{ textDecoration: 'none' }}>
-            후기글
-          </Link>
-        </NavBar>
-        <NavBar>커뮤니티</NavBar>
-        <NavBar>공지사항</NavBar>
-        <Link to="/WriteReview">
-          <Review>후기 작성</Review>
+const Nav = () => (
+  <>
+    <header css={topHeader}>
+      <div css={navBar}>
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          로고가 들어갈 영역
         </Link>
-      </BottomHeader>
-    </>
-  );
-};
+      </div>
+      <div style={{ flexGrow: '1' }}></div>
+      <div css={navBar}>
+        {' '}
+        <Link to="/Login" style={{ textDecoration: 'none' }}>
+          로그인
+        </Link>
+      </div>
+      <div css={navBar}>
+        {' '}
+        <Link to="/SignUp" style={{ textDecoration: 'none' }}>
+          회원가입
+        </Link>
+      </div>
+    </header>
+
+    <header css={bottomHeader}>
+      <div css={navBar}>
+        {' '}
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          홈
+        </Link>
+      </div>
+      <div css={navBar}>
+        {' '}
+        <Link to="/Review" style={{ textDecoration: 'none' }}>
+          후기글
+        </Link>
+      </div>
+      <div css={navBar}>커뮤니티</div>
+      <div css={navBar}>공지사항</div>
+      <Link to="/WriteReview">
+        <div css={review}>후기 작성</div>
+      </Link>
+    </header>
+  </>
+);
 
 export default Nav;
