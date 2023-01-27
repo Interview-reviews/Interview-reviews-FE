@@ -8,6 +8,7 @@ import ResetPassword from './pages/login/ResetPassword';
 import SignUp from './pages/login/SignUp';
 import Main from './pages/Main';
 import NotFound from './pages/NotFound';
+import Review from './pages/review/Review';
 import WriteReview from './pages/review/WriteReview';
 import Welcome from './pages/Welcome';
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/SignUp" element={<SignUp />}></Route>
         <Route path="/Information" element={<Information />}></Route>
         <Route path="/Welcome" element={<Welcome />}></Route>
+        <Route path="/Review" element={<Review />}></Route>
         <Route path="/WriteReview" element={<WriteReview />}></Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

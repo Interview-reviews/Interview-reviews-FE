@@ -1,27 +1,27 @@
 /* eslint-disable */
-
+/** @jsxImportSource @emotion/react */
+import { jsx, css } from '@emotion/react';
 import { useState } from 'react';
-import styled from 'styled-components';
 import Nav from '../../components/Nav';
 
-const WriteContainer = styled.fieldset`
+const writeContainer = css`
   position: absolute;
   top: 15%;
   left: 25%;
   border: none;
 `;
 
-const WriteReviewFont = styled.div`
+const writeReviewFont = css`
   font-weight: 600;
   font-size: 26px;
   margin: 100px 0 60px 50px;
 `;
 
-const InputContainer = styled.li`
+const inputContainer = css`
   list-style: none;
 `;
 
-const CompanyWrite = styled.input`
+const companyWrite = css`
   font-weight: 530;
   font-size: 14px;
   border: 1px solid #eaeaea;
@@ -32,7 +32,7 @@ const CompanyWrite = styled.input`
   margin: 10px 0px 10px 20px;
 `;
 
-const SupportWrite = styled.input`
+const supportWrite = css`
   font-weight: 530;
   font-size: 14px;
   border: 1px solid #eaeaea;
@@ -43,7 +43,7 @@ const SupportWrite = styled.input`
   margin: 10px 0px 10px 20px;
 `;
 
-const Label = styled.label`
+const labelStyle = css`
   display: inline-block;
   padding: 30px 40px 30px 19px;
   width: 140px;
@@ -53,7 +53,24 @@ const Label = styled.label`
   background: #f8fafb;
 `;
 
-const CheckButton = styled.button`
+const contentLabelStyle = css`
+  display: inline-block;
+  padding: 30px 40px 30px 19px;
+  width: 140px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20em;
+  background: #f8fafb;
+`;
+
+const contentInput = css`
+  width: 40em;
+  height: 20em;
+  maxlength: 200;
+  display: inline;
+`;
+
+const checkButton = css`
   cursor: pointer;
   width: 120px;
   height: 48px;
@@ -65,8 +82,11 @@ const CheckButton = styled.button`
   &:hover {
     opacity: 70%;
     font-weight: 600;
-    color: white;
   }
+`;
+
+const footer = css`
+  margin: 5em 0 3em 20em;
 `;
 
 const WriteReview = () => {
@@ -76,12 +96,12 @@ const WriteReview = () => {
   const [job, setJob] = useState('');
   const [support, setSupport] = useState('');
   const [interview, setInterview] = useState({
-    일반면접: false,
-    인성면접: false,
-    PT면접: false,
-    토론면접: false,
-    임원면접: false,
-    실무과제및시험: false,
+    normal: false,
+    tenacity: false,
+    pt: false,
+    discuss: false,
+    executive: false,
+    mission: false,
   });
   const [career, setCareer] = useState('');
   const [level, setLevel] = useState('');
@@ -110,11 +130,8 @@ const WriteReview = () => {
     setLevel(e.currentTarget.value);
     const clickButton = document.getElementsByName('level');
     clickButton.forEach((btn, idx) => {
-      if (btn.value === e.currentTarget.value) {
-        document.getElementById(`levelBtn${idx}`).style.backgroundColor = '#5C8AFF';
-      } else {
-        document.getElementById(`levelBtn${idx}`).style.backgroundColor = '';
-      }
+      document.getElementById(`levelBtn${idx}`).style.backgroundColor =
+        btn.value === e.currentTarget.value ? '#5C8AFF' : '';
     });
   };
 
@@ -123,12 +140,21 @@ const WriteReview = () => {
     setResult(e.currentTarget.value);
     const clickButton = document.getElementsByName('result');
     clickButton.forEach((btn, idx) => {
-      if (btn.value === e.currentTarget.value) {
-        document.getElementById(`resultBtn${idx}`).style.backgroundColor = '#5C8AFF';
-      } else {
-        document.getElementById(`resultBtn${idx}`).style.backgroundColor = '';
-      }
+      document.getElementById(`resultBtn${idx}`).style.backgroundColor =
+        btn.value === e.currentTarget.value ? '#5C8AFF' : '';
     });
+  };
+
+  const onSubmitHandler = e => {
+    e.preventDefault();
+    let storage = [];
+    if (localStorage.getItem('reviewInfo') !== null) {
+      storage = JSON.parse(localStorage.getItem('reviewInfo'));
+    }
+    const result = [...storage, info];
+    console.log(localStorage);
+    localStorage.setItem('reviewInfo', JSON.stringify(result));
+    console.log(JSON.parse(localStorage.getItem('reviewInfo')));
   };
 
   const info = {
@@ -148,17 +174,21 @@ const WriteReview = () => {
   return (
     <>
       <Nav />
-      <WriteContainer>
-        <WriteReviewFont>면접 후기 등록</WriteReviewFont>
+      <fieldset css={writeContainer}>
+        <div css={writeReviewFont}>면접 후기 등록</div>
         <form style={{ display: 'flex', flexDirection: 'column' }}>
           <ul>
-            <InputContainer>
-              <Label>지원한 회사</Label>
-              <CompanyWrite placeholder="지원한 회사명을 입력해주세요." onChange={e => setCompany(e.target.value)} />
-            </InputContainer>
+            <li css={inputContainer}>
+              <label css={labelStyle}>지원한 회사</label>
+              <input
+                style={companyWrite}
+                placeholder="지원한 회사명을 입력해주세요."
+                onChange={e => setCompany(e.target.value)}
+              />
+            </li>
             <hr />
-            <InputContainer>
-              <Label>지원한 직무</Label>
+            <li css={inputContainer}>
+              <label css={labelStyle}>지원한 직무</label>
               <select onChange={e => setJob(e.currentTarget.value)}>
                 <option selected value={''}>
                   지원한 직무를 선택해주세요.
@@ -169,10 +199,10 @@ const WriteReview = () => {
                 <option>AI</option>
                 <option>정보보안</option>
               </select>
-            </InputContainer>
+            </li>
             <hr />
-            <InputContainer>
-              <Label>지원시기</Label>
+            <li css={inputContainer}>
+              <label css={labelStyle}>지원시기</label>
               <select onChange={e => setSupport(e.currentTarget.value)} value={support}>
                 <option selected value={''}>
                   지원한시기를 선택해주세요
@@ -185,26 +215,26 @@ const WriteReview = () => {
                   ))
                 )}
               </select>
-            </InputContainer>
+            </li>
             <hr />
-            <InputContainer>
-              <Label>면접유형</Label>
-              <input type="checkbox" value="일반면접" onChange={e => onChangeInterview(e)} />
+            <li css={inputContainer}>
+              <label css={labelStyle}>면접유형</label>
+              <input type="checkbox" value="normal" onChange={e => onChangeInterview(e)} />
               일반 면접
-              <input type="checkbox" value="인성면접" onChange={e => onChangeInterview(e)} />
+              <input type="checkbox" value="tanacity" onChange={e => onChangeInterview(e)} />
               인성 면접
-              <input type="checkbox" value="PT면접" onChange={e => onChangeInterview(e)} />
+              <input type="checkbox" value="pt" onChange={e => onChangeInterview(e)} />
               PT 면접
-              <input type="checkbox" value="토론면접" onChange={e => onChangeInterview(e)} />
+              <input type="checkbox" value="discuss" onChange={e => onChangeInterview(e)} />
               토론 면접
-              <input type="checkbox" value="임원면접" onChange={e => onChangeInterview(e)} />
+              <input type="checkbox" value="executive" onChange={e => onChangeInterview(e)} />
               임원 면접
-              <input type="checkbox" value="실무과제및시험" onChange={e => onChangeInterview(e)} />
+              <input type="checkbox" value="mission" onChange={e => onChangeInterview(e)} />
               실무 과제 및 시험
-            </InputContainer>
+            </li>
             <hr />
-            <InputContainer>
-              <Label>면접 당시 경력</Label>
+            <li css={inputContainer}>
+              <label css={labelStyle}>면접 당시 경력</label>
               <input
                 type="checkbox"
                 name="career"
@@ -223,10 +253,10 @@ const WriteReview = () => {
                 }}
               />
               경력
-            </InputContainer>
+            </li>
             <hr />
-            <InputContainer>
-              <Label>면접 난이도</Label>
+            <li css={inputContainer}>
+              <label css={labelStyle}>면접 난이도</label>
               <button name="level" id="levelBtn0" value="쉬움" onClick={onLevelHandler}>
                 쉬움
               </button>
@@ -236,10 +266,10 @@ const WriteReview = () => {
               <button name="level" id="levelBtn2" value="어려움" onClick={onLevelHandler}>
                 어려움
               </button>
-            </InputContainer>
+            </li>
             <hr />
-            <InputContainer>
-              <Label>합격 여부</Label>
+            <li css={inputContainer}>
+              <label css={labelStyle}>합격 여부</label>
               <button name="result" id="resultBtn0" value="합격" onClick={onResultHandler}>
                 합격
               </button>
@@ -249,23 +279,29 @@ const WriteReview = () => {
               <button name="result" id="resultBtn2" value="불합격" onClick={onResultHandler}>
                 불합격
               </button>
-            </InputContainer>
+            </li>
             <hr />
-            <InputContainer>
-              <Label>제목</Label>
+            <li css={inputContainer}>
+              <label css={labelStyle}>제목</label>
               <input placeholder="글 제목을 적어주세요." onChange={e => setTitle(e.target.value)} />
-            </InputContainer>
+            </li>
             <hr />
-            <InputContainer>
-              <Label>내용</Label>
-              <input
+            <li css={inputContainer}>
+              <label css={contentLabelStyle}>내용</label>
+              <textarea
+                css={contentInput}
                 placeholder="전형 및 면접 진행 방식이나 면접에서 받은 질문에 대해 어떻게 답했는지 등 후기를 적어주세요. (200자 이상)"
                 onChange={e => setContent(e.target.value)}
               />
-            </InputContainer>
+            </li>
           </ul>
+          <div css={footer}>
+            <button css={checkButton} onClick={onSubmitHandler}>
+              작성하기
+            </button>
+          </div>
         </form>
-      </WriteContainer>
+      </fieldset>
     </>
   );
 };

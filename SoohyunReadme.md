@@ -92,13 +92,36 @@
     <summary><h3>🏃‍♂️3주차 개발 과정</h3></summary>
     <ul>
         <li>로그인 페이지 CSS 적용</li>
-        <li>회원가입 페이지 CSS 적용</li>
+        <li>회원가입 페이지1 CSS 적용</li>
+        <li>후기글 작성 페이지 CSS 적용(간략)</li>
+        <li>후기글 리스트뷰 페이지 CSS 적용(간략)</li>
+        <li>emotion.js 적용</li>
+        <li>후기글 작성 페이지 기능 구현</li>
+        <li>후기글 리스트뷰 페이지 기능 구현</li>
+        <li>후기글 작성 데이터 임시 로컬 저장</li>
     </ul>
 </details>
 
 <details> 
     <summary><h3>🤷‍♂️ 3주차 주요 고민사항</h3></summary>
     <ul>
-        <li>Styled-Components 적용</li>
+        <li>styled-component? emotion?</li>
+        <li>리액트 빈화면 에러 해결</li>
+        <li>git flow 전략 정하기</li>
+        <li>branch 생성, merge conflict</li>
+        <li>eslint, prettier 설정</li>
+        <li>eslint 에러 해결</li>
+        <li>후기글 관련 컴포넌트 분리</li>
     </ul>
 </details>
+
+<br>
+
+## 4주차 (1/21 ~ 1/27)
+
+📌 목표
+
+- 각 기능 개발 진행한 부분들 디테일 업
+- 회원가입 페이지 기능 리팩터링
+- 후기글 작성 페이지 리팩터링
+- 후기글 리스트 뷰 페이지 리팩터링
