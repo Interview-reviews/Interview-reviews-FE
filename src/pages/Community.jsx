@@ -7,7 +7,9 @@ export default function Community() {
   return (
     <div>
       <Nav />
-      <BackgroundRectangle color="lightBlue" />
+      <BackgroundRectangle color="darkBlue" />
+      <PopularPosts />
+      <CommunityPosts />
     </div>
   );
 }

@@ -3,13 +3,30 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["airbnb-base", "prettier"],
-  "overrides": [],
+  "extends": ["airbnb-base", "prettier", "plugin:react/recommended"],
+  "overrides": [
+    {
+      "files": ["**/*.js?(x)"]
+    }
+  ],
   "parserOptions": {
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "plugins": ["react"],
-  "rules": {},
-  "parser": "babel-eslint"
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "react/no-unknown-property": ["error", { "ignore": ["css"] }]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx"]
+      }
+    }
+  }
 }
