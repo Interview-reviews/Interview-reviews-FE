@@ -93,7 +93,7 @@ const inputContainer = css`
   margin: 20px 0px;
 `;
 
-const Information = props => {
+export default function Information(props) {
   const [graduate, setGraduate] = useState('');
   const [school, setSchool] = useState('');
   const [major, setMajor] = useState('');
@@ -304,6 +304,4 @@ const Information = props => {
       </fieldset>
     </>
   );
-};
-
-export default Information;
+}

@@ -1,6 +1,6 @@
-import Nav from "../../components/Nav";
+import Nav from '../../components/Nav';
 
-const FindId = () => {
+export default function FindId() {
   return (
     <>
       <Nav />
@@ -16,6 +16,4 @@ const FindId = () => {
       <button>아이디 찾기</button>
     </>
   );
-};
-
-export default FindId;
+}

@@ -87,7 +87,7 @@ const levelLabel = css`
   border-radius: 6px;
 `;
 
-const ReviewPosting = props => {
+export default function ReviewPosting(props) {
   return (
     <>
       <div css={reviewBlock}>
@@ -118,7 +118,7 @@ const ReviewPosting = props => {
       </div>
     </>
   );
-};
+}
 /**
     Career
     Company
@@ -131,5 +131,3 @@ const ReviewPosting = props => {
     Support
     Title
      */
-
-export default ReviewPosting;

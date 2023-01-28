@@ -115,7 +115,7 @@ const nextButton = css`
   }
 `;
 
-const SignUp = info => {
+export default function SignUp(info) {
   const [userName, setUserName] = useState(''); // 아이디
   //   const [nameCheck, setNameCheck] = useState("");
   const [nickname, setNickname] = useState(''); // 닉네임
@@ -521,6 +521,4 @@ const SignUp = info => {
       </fieldset>
     </>
   );
-};
-
-export default SignUp;
+}

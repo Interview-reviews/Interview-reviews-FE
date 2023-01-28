@@ -12,7 +12,7 @@ import Review from './pages/review/Review';
 import WriteReview from './pages/review/WriteReview';
 import Welcome from './pages/Welcome';
 
-function App() {
+export default function App() {
   return (
     <>
       <GlobalStyle />
@@ -32,5 +32,3 @@ function App() {
     </>
   );
 }
-
-export default App;

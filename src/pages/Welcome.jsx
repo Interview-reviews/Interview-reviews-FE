@@ -1,6 +1,6 @@
-import Nav from "../components/Nav";
+import Nav from '../components/Nav';
 
-const Welcome = () => {
+export default function Welcome() {
   return (
     <>
       <Nav />
@@ -9,6 +9,4 @@ const Welcome = () => {
       </div>
     </>
   );
-};
-
-export default Welcome;
+}

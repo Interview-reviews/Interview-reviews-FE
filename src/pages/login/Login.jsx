@@ -60,7 +60,7 @@ const clickButton = css`
   }
 `;
 
-const Login = () => {
+export default function Login() {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
 
@@ -118,6 +118,4 @@ const Login = () => {
       </div>
     </>
   );
-};
-
-export default Login;
+}
