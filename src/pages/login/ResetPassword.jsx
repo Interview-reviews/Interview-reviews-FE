@@ -1,7 +1,7 @@
 /* eslint-disable */
 import Nav from '../../components/Nav';
 
-const ResetPassword = () => {
+export default function ResetPassword() {
   return (
     <>
       <Nav />
@@ -16,6 +16,4 @@ const ResetPassword = () => {
       <button>비밀번호 재설정</button>
     </>
   );
-};
-
-export default ResetPassword;
+}

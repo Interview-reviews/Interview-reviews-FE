@@ -89,7 +89,7 @@ const footer = css`
   margin: 5em 0 3em 20em;
 `;
 
-const WriteReview = () => {
+export default function WriteReview() {
   const YEAR = Array.from({ length: 9 }, (_, i) => i + 2015);
   const HALF = ['상반기', '하반기'];
   const [company, setCompany] = useState('');
@@ -304,6 +304,4 @@ const WriteReview = () => {
       </fieldset>
     </>
   );
-};
-
-export default WriteReview;
+}

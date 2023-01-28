@@ -1,4 +1,4 @@
-const PopularReviews = () => {
+export default function PopularReviews() {
   return (
     <>
       <div>
@@ -6,6 +6,4 @@ const PopularReviews = () => {
       </div>
     </>
   );
-};
-
-export default PopularReviews;
+}

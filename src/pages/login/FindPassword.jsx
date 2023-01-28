@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import Nav from "../../components/Nav";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Nav from '../../components/Nav';
 
-const FindPassword = () => {
+export default function FindPassword() {
   const [toggle, setToggle] = useState(false);
 
   const postNumber = () => {
@@ -33,6 +33,4 @@ const FindPassword = () => {
       </Link>
     </>
   );
-};
-
-export default FindPassword;
+}

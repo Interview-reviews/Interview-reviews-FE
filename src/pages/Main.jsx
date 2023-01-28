@@ -2,7 +2,7 @@ import MainSearch from '../components/MainSearch';
 import Nav from '../components/Nav';
 import PopularReviews from '../components/PopularReviews';
 
-const Main = () => {
+export default function Main() {
   return (
     <>
       <Nav />
@@ -10,6 +10,4 @@ const Main = () => {
       <PopularReviews />
     </>
   );
-};
-
-export default Main;
+}

@@ -1,4 +1,4 @@
-const MainSearch = () => {
+export default function MainSearch() {
   return (
     <>
       <div>
@@ -7,6 +7,4 @@ const MainSearch = () => {
       </div>
     </>
   );
-};
-
-export default MainSearch;
+}

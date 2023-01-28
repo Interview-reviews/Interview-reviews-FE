@@ -1,6 +1,6 @@
 import Nav from '../components/Nav';
 
-const NotFound = () => {
+export default function NotFound() {
   return (
     <>
       <Nav />
@@ -9,6 +9,4 @@ const NotFound = () => {
       </div>
     </>
   );
-};
-
-export default NotFound;
+}

@@ -46,7 +46,7 @@ const language = {
   텝스: '3',
 };
 
-export default props => {
+export default function Language(props) {
   const [test, setTest] = useState('');
   const [score, setScore] = useState(props.score);
   if (props.content.test !== test) {
@@ -101,4 +101,4 @@ export default props => {
       </div>
     </>
   );
-};
+}

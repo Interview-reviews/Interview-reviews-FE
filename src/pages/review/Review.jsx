@@ -10,7 +10,7 @@ const reviewTitle = css`
   font-weight: 600;
 `;
 
-const Review = () => {
+export default function Review() {
   const reviewInfo = JSON.parse(localStorage.getItem('reviewInfo'));
   console.log(reviewInfo);
   return (
@@ -24,6 +24,4 @@ const Review = () => {
       </div>
     </>
   );
-};
-
-export default Review;
+}
