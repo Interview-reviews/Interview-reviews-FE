@@ -164,7 +164,7 @@ export default function WriteReview() {
     console.log(JSON.parse(localStorage.getItem('reviewInfo')));
     alert('작성 완료되었습니다.');
   };
-
+  console.log('로컬', JSON.parse(localStorage.getItem('reviewInfo')));
   const info = {
     Company: company,
     Job: job,
