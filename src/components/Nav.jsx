@@ -2,7 +2,6 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from '@emotion/react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 
 const topHeader = css`
   display: flex;
