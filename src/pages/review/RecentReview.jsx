@@ -58,7 +58,7 @@ const middle = css`
 `;
 
 const footer = css`
-  margin-top: 3em;
+  margin-top: 2em;
 `;
 
 export default function RecentReview(props) {

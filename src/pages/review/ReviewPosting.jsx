@@ -1,6 +1,7 @@
 /* eslint-disable */
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from '@emotion/react';
+import { useState } from 'react';
 
 const reviewBlock = css`
   width: 80em;
@@ -10,11 +11,32 @@ const reviewBlock = css`
   border: 1.5px solid #5c8aff;
   box-shadow: 0px 10px 42px rgba(0, 0, 0, 0.05);
   border-radius: 20px;
+  cursor: pointer;
 `;
 
 const upper = css`
   justify-content: center;
   padding: 20px;
+  display: flex;
+`;
+
+const upperLeft = css`
+  width: 40%;
+`;
+
+const upperMiddle = css`
+  width: 40%;
+`;
+
+const upperRight = css`
+  width: 30%;
+  font-size: 14px;
+  font-weight: 500;
+  color: #9d9d9d;
+`;
+
+const viewText = css`
+  margin: 0 2em 0 1em;
 `;
 
 const companyLabel = css`
@@ -54,12 +76,12 @@ const supportLabel = css`
   margin: 20px 0 10px 20px;
 `;
 
+const mainDiv = css``;
+
 const divLine = css`
   color: #e5eaef;
-  margin: 10px 0;
+  margin-bottom: 10px;
 `;
-
-const mainDiv = css``;
 
 const titleP = css`
   font-size: 22px;
@@ -88,15 +110,42 @@ const levelLabel = css`
 `;
 
 export default function ReviewPosting(props) {
+  const [likeTotal, setLikeTotal] = useState(0);
+  const [viewTotal, setViewTotal] = useState(0);
+
+  const countView = e => {
+    e.preventDefault();
+    setViewTotal(viewTotal + 1);
+  };
+
+  const makeDateText = () => {
+    const year = props.info.Date[0];
+    const month = String(props.info.Date[1]).length === 1 ? '0' + props.info.Date[1] : props.info.Date[1];
+    const day = String(props.info.Date[2]).length === 1 ? '0' + props.info.Date[2] : props.info.Date[2];
+    return (
+      <label>
+        {year}.{month}.{day}
+      </label>
+    );
+  };
+
   return (
     <>
-      <div css={reviewBlock}>
+      <div css={reviewBlock} onClick={countView}>
         <div css={upper}>
-          <label css={companyLabel}>{props.info.Company}</label>
-          <label css={bar}>|</label>
-          <label css={resultLabel}>{props.info.Result}</label>
-          <label css={jobLabel}>{props.info.Job}</label>
-          <label css={carrerLabel}>{props.info.Career}</label>
+          <div css={upperLeft}>
+            <label css={companyLabel}>{props.info.Company}</label>
+            <label css={bar}>|</label>
+            <label css={resultLabel}>{props.info.Result}</label>
+            <label css={jobLabel}>{props.info.Job}</label>
+            <label css={carrerLabel}>{props.info.Career}</label>
+          </div>
+          <div css={upperMiddle} />
+          <div css={upperRight}>
+            <label>좋아요 {likeTotal} </label>
+            <label css={viewText}>조회수 {viewTotal} </label>
+            {makeDateText()}
+          </div>
         </div>
         <hr css={divLine} />
         <label css={supportLabel}>{props.info.Support}</label>
