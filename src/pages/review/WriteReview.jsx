@@ -145,16 +145,24 @@ export default function WriteReview() {
     });
   };
 
+  const getDate = () => {
+    const date = new Date();
+    const [year, month, day] = [date.getFullYear(), date.getMonth() + 1, date.getDate()];
+    return [year, month, day];
+  };
+
   const onSubmitHandler = e => {
     e.preventDefault();
     let storage = [];
     if (localStorage.getItem('reviewInfo') !== null) {
       storage = JSON.parse(localStorage.getItem('reviewInfo'));
     }
+    info['Date'] = getDate();
     const result = [...storage, info];
     console.log(localStorage);
     localStorage.setItem('reviewInfo', JSON.stringify(result));
     console.log(JSON.parse(localStorage.getItem('reviewInfo')));
+    alert('작성 완료되었습니다.');
   };
 
   const info = {
