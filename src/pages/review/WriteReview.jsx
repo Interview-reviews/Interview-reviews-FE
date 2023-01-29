@@ -147,8 +147,7 @@ export default function WriteReview() {
 
   const getDate = () => {
     const date = new Date();
-    const [year, month, day] = [date.getFullYear(), date.getMonth() + 1, date.getDate()];
-    return [year, month, day];
+    return [date.getFullYear(), date.getMonth() + 1, date.getDate()];
   };
 
   const onSubmitHandler = e => {
