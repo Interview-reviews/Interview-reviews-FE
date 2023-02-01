@@ -1,6 +1,6 @@
 /* eslint-disable */
 /** @jsxImportSource @emotion/react */
-import { jsx, css } from '@emotion/react';
+import { css } from '@emotion/react';
 import { Link } from 'react-router-dom';
 
 const topHeader = css`
@@ -75,7 +75,11 @@ export default function Nav() {
             후기글
           </Link>
         </div>
-        <div css={navBar}>커뮤니티</div>
+        <div css={navBar}>
+          <Link to="/Community" style={{ textDecoration: 'none' }}>
+            커뮤니티
+          </Link>
+        </div>
         <div css={navBar}>공지사항</div>
         <Link to="/WriteReview">
           <div css={review}>후기 작성</div>

@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import PopularSquarePost from '../PopularSquarePost/PopularSquarePost';
+import PopularSquarePost from '../CommunityPopularPost/CommunityPopularPost';
 
 const datas = [
   {

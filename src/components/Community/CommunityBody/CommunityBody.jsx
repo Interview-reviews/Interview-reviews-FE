@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import Hashtags from '../Hashtag/Hashtag';
+import Hashtags from '../../Hashtag/Hashtag';
 
 export default function CommunityBody({ hashtags, title, body }) {
   return (
