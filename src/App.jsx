@@ -11,6 +11,8 @@ import NotFound from './pages/NotFound';
 import Review from './pages/review/Review';
 import WriteReview from './pages/review/WriteReview';
 import Welcome from './pages/Welcome';
+import Community from './pages/Community/Main';
+import Write from './pages/Community/Wrtie';
 
 export default function App() {
   return (
@@ -26,7 +28,8 @@ export default function App() {
         <Route path="/Information" element={<Information />}></Route>
         <Route path="/Welcome" element={<Welcome />}></Route>
         <Route path="/Review" element={<Review />}></Route>
-        <Route path="/WriteReview" element={<WriteReview />}></Route>
+        <Route path="/Community" element={<Community />}></Route>
+        <Route path="/Community/Write" element={<Write />}></Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
