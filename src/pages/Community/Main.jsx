@@ -8,10 +8,10 @@ export default function Community() {
   return (
     <div>
       <Nav />
-      <BackgroundRectangle color="darkBlue" />
+      <BackgroundRectangle color={'darkBlue'} />
       <PopularPosts />
       <CommunityPosts />
-      <Link to="/Community/Write">ㅇㅇ</Link>
+      <Link to="/Community/Write">글 작성</Link>
     </div>
   );
 }

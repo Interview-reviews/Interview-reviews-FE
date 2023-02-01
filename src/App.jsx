@@ -12,7 +12,7 @@ import Review from './pages/review/Review';
 import WriteReview from './pages/review/WriteReview';
 import Welcome from './pages/Welcome';
 import Community from './pages/Community/Main';
-import Write from './pages/Community/Wrtie';
+import Write from './pages/Community/Write';
 
 export default function App() {
   return (

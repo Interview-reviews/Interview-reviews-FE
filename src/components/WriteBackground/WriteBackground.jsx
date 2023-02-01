@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 
 const colors = {
-  lightBlue: '#5c8aff',
+  lightBlue: '#5C8AFF',
   darkBlue: '#37415B',
 };
 
@@ -12,6 +12,6 @@ const style = color => css`
   height: 100vh;
 `;
 
-export default function Background({ color }) {
+export default function WriteBackground({ color }) {
   return <div css={style(color)}></div>;
 }
