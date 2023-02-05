@@ -11,8 +11,8 @@ import NotFound from './pages/NotFound';
 import Review from './pages/review/Review';
 import WriteReview from './pages/review/WriteReview';
 import Welcome from './pages/Welcome';
-import Community from './pages/Community/Main';
-import Write from './pages/Community/Write';
+import Community from './pages/Community/CommunityMain';
+import Write from './pages/Community/CommunityWrite';
 
 export default function App() {
   return (

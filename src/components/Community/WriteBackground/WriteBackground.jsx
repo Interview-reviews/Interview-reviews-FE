@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import WriteContainer from '../WriteContainer/WriteContainer';
 
 const colors = {
   lightBlue: '#5C8AFF',
@@ -8,10 +9,16 @@ const colors = {
 
 const style = color => css`
   background-color: ${colors[color]};
-  width: 100%;
+  width: 100vw;
   height: 100vh;
+  display: flex;
+  justify-content: center;
 `;
 
 export default function WriteBackground({ color }) {
-  return <div css={style(color)}></div>;
+  return (
+    <div css={style(color)}>
+      <WriteContainer />
+    </div>
+  );
 }
