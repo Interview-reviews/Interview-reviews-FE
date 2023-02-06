@@ -96,12 +96,12 @@ export default function WriteReview() {
   const [job, setJob] = useState('');
   const [support, setSupport] = useState('');
   const [interview, setInterview] = useState({
-    normal: false,
-    tenacity: false,
-    pt: false,
-    discuss: false,
-    executive: false,
-    mission: false,
+    일반: false,
+    인성: false,
+    PT: false,
+    토론: false,
+    임원: false,
+    실무과제: false,
   });
   const [career, setCareer] = useState('');
   const [level, setLevel] = useState('');
@@ -226,17 +226,17 @@ export default function WriteReview() {
             <hr />
             <li css={inputContainer}>
               <label css={labelStyle}>면접유형</label>
-              <input type="checkbox" value="normal" onChange={e => onChangeInterview(e)} />
+              <input type="checkbox" value="일반" onChange={e => onChangeInterview(e)} />
               일반 면접
-              <input type="checkbox" value="tanacity" onChange={e => onChangeInterview(e)} />
+              <input type="checkbox" value="인성" onChange={e => onChangeInterview(e)} />
               인성 면접
-              <input type="checkbox" value="pt" onChange={e => onChangeInterview(e)} />
+              <input type="checkbox" value="PT" onChange={e => onChangeInterview(e)} />
               PT 면접
-              <input type="checkbox" value="discuss" onChange={e => onChangeInterview(e)} />
+              <input type="checkbox" value="토론" onChange={e => onChangeInterview(e)} />
               토론 면접
-              <input type="checkbox" value="executive" onChange={e => onChangeInterview(e)} />
+              <input type="checkbox" value="임원" onChange={e => onChangeInterview(e)} />
               임원 면접
-              <input type="checkbox" value="mission" onChange={e => onChangeInterview(e)} />
+              <input type="checkbox" value="실무과제" onChange={e => onChangeInterview(e)} />
               실무 과제 및 시험
             </li>
             <hr />
