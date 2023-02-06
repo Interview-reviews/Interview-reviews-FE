@@ -1,4 +1,5 @@
-import axios from "axios";
+/* eslint-disable */
+import axios from 'axios';
 
 /**
  * @author soohyun-dev
@@ -20,15 +21,15 @@ export async function checkLogin(formData) {
   //   }
 
   const response = await fetch(``, {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
     body: formData,
   });
   if (!response.ok) {
-    throw new Error("로그인 조회에 실패하였습니다.");
+    throw new Error('로그인 조회에 실패하였습니다.');
   }
   const token = response.headers.authorization;
-  window.localStorage.setItem("token", token);
+  window.localStorage.setItem('token', token);
   const body = await response.json();
   return body;
 }
