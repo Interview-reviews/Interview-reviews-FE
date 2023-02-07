@@ -17,7 +17,6 @@ const labelStyle = css`
   justify-content: center;
 
   margin-right: 1.5rem;
-
   border-radius: 6px;
 `;
 
@@ -81,4 +80,9 @@ const titleStyle = css`
   padding: 1rem;
 `;
 
-export { liStyle, labelStyle, hrStyle, fieldsetStyle, inputStyle, formStyle, textareaStyle, titleStyle };
+const textStyle = css`
+  position: relative;
+  left: 1rem;
+`;
+
+export { liStyle, labelStyle, hrStyle, fieldsetStyle, inputStyle, formStyle, textareaStyle, titleStyle, textStyle };

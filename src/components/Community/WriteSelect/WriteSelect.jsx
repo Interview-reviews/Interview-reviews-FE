@@ -12,7 +12,7 @@ export default function WriteSelect() {
   };
 
   return (
-    <select css={selectStyle} required value={selected} onChange={handleSelect}>
+    <select css={selectStyle} required name="category" value={selected} onChange={handleSelect}>
       {selectList.map(item => (
         <option value={item} key={item} disabled={item === defaultOption}>
           {item}
