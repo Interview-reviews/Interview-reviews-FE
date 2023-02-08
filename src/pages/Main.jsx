@@ -2,11 +2,12 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from '@emotion/react';
 import MainSearch from '../components/Main/MainSearch';
+import ReviewBox from '../components/Main/ReviewBox';
 import Nav from '../components/Nav';
 import RecentReview from './review/RecentReview';
 
-const recentContainer = css`
-  margin: 5em 7em 10em 7em;
+const popularContainer = css`
+  margin: 3em 7em 10em 7em;
   display: flex;
 `;
 
@@ -19,6 +20,12 @@ const popularTitle = css`
   font-weight: 600;
 `;
 
+const reviewContainer = css`
+  width: 90%;
+  margin: 3em 0em 10em 7em;
+  display: inline-block;
+`;
+
 export default function Main() {
   const reviewInfo = JSON.parse(localStorage.getItem('reviewInfo'));
 
@@ -26,15 +33,23 @@ export default function Main() {
     <>
       <Nav />
       <MainSearch />
-      <div css={popularTitleContainer}>
-        <p css={popularTitle}>많이 본 후기글</p>
-      </div>
-      <div css={recentContainer}>
-        {reviewInfo.map((review, idx) => (idx < 4 ? <RecentReview info={review} /> : ''))}
-      </div>
-      <div css={popularTitleContainer}>
-        <p css={popularTitle}>면접 후기</p>
-      </div>
+      <section>
+        <div css={popularTitleContainer}>
+          <p css={popularTitle}>많이 본 후기글</p>
+        </div>
+        <div css={popularContainer}>
+          {reviewInfo.map((review, idx) => (idx < 4 ? <RecentReview info={review} /> : ''))}
+        </div>
+      </section>
+      <section>
+        <div css={popularTitleContainer}>
+          <p css={popularTitle}>면접 후기</p>
+        </div>
+        <div css={reviewContainer}>
+          {reviewInfo.map((review, idx) => (idx < 10 ? <ReviewBox info={review} /> : ''))}
+        </div>
+      </section>
+      <section>{/* 성민님 작성하실 부분 */}</section>
     </>
   );
 }
