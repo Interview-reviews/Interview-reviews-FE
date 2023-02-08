@@ -4,7 +4,7 @@ import { jsx, css } from '@emotion/react';
 
 const recentReviewContainer = css`
   width: 15em;
-  height: 12em;
+  height: 13em;
   background-color: #ffffff;
   box-shadow: 0px 20px 42px rgba(0, 0, 0, 0.05);
   border-radius: 20px;
@@ -58,7 +58,7 @@ const middle = css`
 `;
 
 const footer = css`
-  margin-top: 2em;
+  margin: 2em 0;
 `;
 
 export default function RecentReview(props) {
