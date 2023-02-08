@@ -55,15 +55,11 @@ export default function Review() {
         </div>
 
         <div css={recentContainer}>
-          {reviewInfo.map((review, idx) => (idx < 4 ? <RecentReview info={review} /> : ''))}
+          {reviewInfo === null ? '' : reviewInfo.map((review, idx) => (idx < 4 ? <RecentReview info={review} /> : ''))}
         </div>
       </div>
       <p css={reviewTitle}>면접후기</p>
-      <div>
-        {reviewInfo.map(review => (
-          <ReviewPosting info={review} />
-        ))}
-      </div>
+      <div>{reviewInfo === null ? '' : reviewInfo.map(review => <ReviewPosting info={review} />)}</div>
     </>
   );
 }

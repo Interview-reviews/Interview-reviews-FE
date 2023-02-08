@@ -28,6 +28,7 @@ const reviewContainer = css`
 
 export default function Main() {
   const reviewInfo = JSON.parse(localStorage.getItem('reviewInfo'));
+  console.log(reviewInfo);
 
   return (
     <>
@@ -38,7 +39,7 @@ export default function Main() {
           <p css={popularTitle}>많이 본 후기글</p>
         </div>
         <div css={popularContainer}>
-          {reviewInfo.map((review, idx) => (idx < 4 ? <RecentReview info={review} /> : ''))}
+          {reviewInfo === null ? '' : reviewInfo.map((review, idx) => (idx < 4 ? <RecentReview info={review} /> : ''))}
         </div>
       </section>
       <section>
@@ -46,7 +47,7 @@ export default function Main() {
           <p css={popularTitle}>면접 후기</p>
         </div>
         <div css={reviewContainer}>
-          {reviewInfo.map((review, idx) => (idx < 10 ? <ReviewBox info={review} /> : ''))}
+          {reviewInfo === null ? '' : reviewInfo.map((review, idx) => (idx < 10 ? <ReviewBox info={review} /> : ''))}
         </div>
       </section>
       <section>{/* 성민님 작성하실 부분 */}</section>
