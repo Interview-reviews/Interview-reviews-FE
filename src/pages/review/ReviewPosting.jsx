@@ -2,6 +2,7 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from '@emotion/react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const reviewBlock = css`
   width: 80em;
@@ -109,6 +110,37 @@ const levelLabel = css`
   border-radius: 6px;
 `;
 
+const detailBtn = css`
+  text-decoration: none;
+  color: black;
+  position: right;
+`;
+
+const leftDiv = css`
+  width: 40%;
+  display: inline-block;
+`;
+const middleDiv = css`
+  width: 48%;
+  display: inline-block;
+`;
+const rightDiv = css`
+  width: 12%;
+  display: inline-block;
+`;
+
+const btnStyle = css`
+  font-size: 12px;
+  padding: 1em 2em;
+  background: #ffffff;
+  border: 1px solid #dfdfdf;
+  border-radius: 8px;
+  cursor: pointer;
+  &:hover {
+    opacity: 70%;
+  }
+`;
+
 export default function ReviewPosting(props) {
   const [likeTotal, setLikeTotal] = useState(0);
   const [viewTotal, setViewTotal] = useState(0);
@@ -157,11 +189,33 @@ export default function ReviewPosting(props) {
             <p css={contentP}>{props.info.Content}</p>
           </div>
           <div>
-            <label css={levelTitle}>면접 유형</label>
-            <label css={levelLabel}>{props.info.Level}</label>
-            <label css={bar}>|</label>
-            <label css={levelTitle}>면접 난이도</label>
-            <label css={levelLabel}>{props.info.Level}</label>
+            <div css={leftDiv}>
+              <label css={levelTitle}>면접 유형</label>
+              <label css={levelLabel}>{props.info.Level}</label>
+              <label css={bar}>|</label>
+              <label css={levelTitle}>면접 난이도</label>
+              <label css={levelLabel}>{props.info.Level}</label>
+            </div>
+            <div css={middleDiv}></div>
+            <div css={rightDiv}>
+              <Link
+                to={`/Review/ReviewDetailPage/${props.info.idx}`}
+                state={{
+                  idx: props.info.idx,
+                  title: props.info.Title,
+                  company: props.info.Company,
+                  result: props.info.Result,
+                  job: props.info.Job,
+                  career: props.info.Career,
+                  support: props.info.Support,
+                  content: props.info.Content,
+                  level: props.info.Level,
+                  date: props.info.Date,
+                }}
+                css={detailBtn}>
+                <button css={btnStyle}>상세보기 ➡️</button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
