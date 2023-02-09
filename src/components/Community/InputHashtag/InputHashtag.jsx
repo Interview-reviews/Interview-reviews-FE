@@ -7,8 +7,8 @@ export default function InputHashtag() {
   const [tags, setTags] = useState([]);
 
   const addTag = () => {
-    const tag = newTag.replaceAll(' ', '');
-    if (!tags.includes(tag)) {
+    const tag = newTag.replace(/[{}[\]/?.,;:|)*~`!^\-_+<>@#$%&\\=('"\s]/g, '');
+    if (!tags.includes(tag) && tag.length) {
       setTags([...tags, tag]);
     }
     setNewTag('');
@@ -21,11 +21,13 @@ export default function InputHashtag() {
   };
 
   const onKeyPress = e => {
-    if (e.target.value.trim().length && e.key === 'Enter') {
+    if (e.key === 'Enter') {
       addTag();
       e.preventDefault();
     }
   };
+
+  const onChangeHandler = e => setNewTag(e.target.value.slice(0, 10));
 
   return (
     <div css={tagDivStyle}>
@@ -42,7 +44,7 @@ export default function InputHashtag() {
         value={newTag}
         name="tags"
         placeholder="해시태그를 입력하세요."
-        onChange={e => setNewTag(e.target.value)}
+        onChange={e => onChangeHandler(e)}
         onKeyPress={onKeyPress}></input>
     </div>
   );
