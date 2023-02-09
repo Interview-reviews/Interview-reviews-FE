@@ -153,18 +153,7 @@ const btnStyle = css`
 
 export default function ReviewDetailPosting() {
   const location = useLocation();
-  const [idx, title, company, result, job, career, support, content, level, date] = [
-    location.state.idx,
-    location.state.title,
-    location.state.company,
-    location.state.result,
-    location.state.job,
-    location.state.career,
-    location.state.support,
-    location.state.content,
-    location.state.level,
-    location.state.date,
-  ];
+  const { career, company, content, date, idx, job, level, result, support, title } = location.state;
   return (
     <>
       <Nav />
