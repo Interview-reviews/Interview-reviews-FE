@@ -110,20 +110,14 @@ export default function PopularPosts() {
   return (
     <div
       css={{
-        position: 'absolute',
-        // absoulte를 사용한 센터 중앙
-        left: '50%',
-        transform: 'translateX(-50%)',
-
         alignItems: 'center',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
 
         display: 'flex',
 
-        width: '70em',
+        width: '95%',
         height: '18em',
-        top: '20em',
-        // border: '1px solid black',
+        border: '1px solid black',
       }}>
       {/* 고차함수 사용 with MockUp Data */}
       {datas.slice(0, 4).map(({ id, img, username, hashtags, title, views }) => (
