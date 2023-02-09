@@ -158,13 +158,15 @@ export default function WriteReview() {
     }
     info['Date'] = getDate();
     const result = [...storage, info];
-    console.log(localStorage);
     localStorage.setItem('reviewInfo', JSON.stringify(result));
-    console.log(JSON.parse(localStorage.getItem('reviewInfo')));
+
     alert('작성 완료되었습니다.');
   };
-  console.log('로컬', JSON.parse(localStorage.getItem('reviewInfo')));
+  const idx =
+    JSON.parse(localStorage.getItem('reviewInfo')) === null ? 0 : JSON.parse(localStorage.getItem('reviewInfo')).length;
+
   const info = {
+    idx: idx + 1,
     Company: company,
     Job: job,
     Support: support,

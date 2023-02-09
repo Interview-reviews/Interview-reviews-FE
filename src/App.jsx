@@ -13,6 +13,7 @@ import WriteReview from './pages/review/WriteReview';
 import Welcome from './pages/Welcome';
 import Community from './pages/Community/CommunityMain';
 import Write from './pages/Community/CommunityWrite';
+import ReviewDetailPosting from './pages/review/ReviewDetailPage';
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
         <Route path="/WriteReview" element={<WriteReview />}></Route>
         <Route path="/Community" element={<Community />}></Route>
         <Route path="/Community/Write" element={<Write />}></Route>
+        <Route path="/Review/ReviewDetailPage/:idx" element={<ReviewDetailPosting />}></Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
