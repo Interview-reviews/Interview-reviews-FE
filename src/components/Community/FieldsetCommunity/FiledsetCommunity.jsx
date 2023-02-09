@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { useRef, useState } from 'react';
 import Button from '../Button/Button';
+import InputHashtag from '../InputHashtag/InputHashtag';
 import WriteSelect from '../WriteSelect/WriteSelect';
 import {
   liStyle,
@@ -19,12 +20,11 @@ export default function FieldsetCommunity() {
   const labelRef = useRef();
   const [post, setPostInfo] = useState({ title: '', content: '', hashtags: '' });
 
-  const handleResizeTextareaHeight = e => {
+  const handleResizeHeight = e => {
     textareaRef.current.style.height = '3rem';
     textareaRef.current.style.height = `${textareaRef.current.scrollHeight / 17 - 0.5}rem`;
     labelRef.current.style.lineHeight = '5rem';
     labelRef.current.style.lineHeight = `${textareaRef.current.scrollHeight / 12}rem`;
-
     setPostInfo({ ...post, content: e.target.value });
   };
 
@@ -60,11 +60,12 @@ export default function FieldsetCommunity() {
               <p css={textStyle}>내용</p>
             </label>
             <textarea
+              rows={1}
               css={textareaStyle}
               value={post.content}
               name="content"
               placeholder="글 내용을 적어주세요."
-              onChange={e => handleResizeTextareaHeight(e)}
+              onChange={e => handleResizeHeight(e)}
               ref={textareaRef}
               required></textarea>
           </li>
@@ -74,12 +75,7 @@ export default function FieldsetCommunity() {
             <label htmlFor="tags" css={labelStyle}>
               <p css={textStyle}>태그</p>
             </label>
-            <input
-              css={inputStyle}
-              value={post.hashtags}
-              name="tags"
-              placeholder="해시태그를 입력하세요."
-              onChange={e => setPostInfo({ ...post, hashtags: e.target.value })}></input>
+            <InputHashtag />
           </li>
           <hr css={hrStyle} />
         </ul>
