@@ -9,10 +9,8 @@ const careerColors = {
 
 export default function CommunityHeader({ img, username, career, likes, comments, date }) {
   return (
-    // 이미지, 아이디, 경력 확인
     <div
       css={{
-        // border: '1px solid blue',
         display: 'flex',
         width: '90%',
         height: '35%',
@@ -23,12 +21,10 @@ export default function CommunityHeader({ img, username, career, likes, comments
       }}>
       <div
         css={{
-          // border: '1px solid black',
           display: 'flex',
           alignItems: 'center',
         }}>
         {/* 추후 이미지로 변경될 예정 */}
-
         <div
           css={{
             display: 'flex',
@@ -47,7 +43,6 @@ export default function CommunityHeader({ img, username, career, likes, comments
           <CommunityDate date={date} />
         </div>
 
-        {/* 커리어 색상 변경해야 함 */}
         <div
           css={{
             display: 'flex',

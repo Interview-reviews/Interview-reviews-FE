@@ -4,10 +4,10 @@ import CommunityContainer from '../../components/Community/CommunityContainer/Co
 
 export default function Community() {
   return (
-    <>
+    <div>
       <Nav />
       <BackgroundRectangle color="darkBlue" />
       <CommunityContainer />
-    </>
+    </div>
   );
 }
