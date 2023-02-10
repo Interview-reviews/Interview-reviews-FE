@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 
 const titleStyle = css`
-  width: 95%;
+  width: 90%;
   height: 10vh;
 
   font-weight: 600;
@@ -15,7 +15,7 @@ const titleStyle = css`
 `;
 
 const manipulateStyle = css`
-  width: 95%;
+  width: 90%;
   height: 10vh;
 
   display: flex;
@@ -32,7 +32,6 @@ const divButtonStyle = css`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 2rem;
 `;
 
 const linkStyle = css`

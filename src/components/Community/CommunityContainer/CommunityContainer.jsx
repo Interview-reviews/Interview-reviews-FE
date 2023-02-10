@@ -1,26 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
 import CommunityMainHeader from '../CommunityMainHeader/CommunityMainHeader';
 import PopularPosts from '../CommunityPopularPosts/CommunityPopularPosts';
-// import CommunityPosts from '../CommunityPosts/CommunityPosts';
-
-const containerStyle = css`
-  width: 90vw;
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  border: 1px solid black;
-`;
-
-const wrapper = css`
-  width: 90vw;
-  height: 90%;
-
-  margin: 0 auto;
-`;
+import CommunityPosts from '../CommunityPosts/CommunityPosts';
+import { containerStyle, wrapper } from './CommunityContainer.style';
 
 export default function CommunityContainer() {
   return (
@@ -28,8 +10,7 @@ export default function CommunityContainer() {
       <div css={containerStyle}>
         <CommunityMainHeader />
         <PopularPosts />
-        <div style={{ height: '300px' }} />
-        <div style={{ height: '300px' }} />
+        <CommunityPosts />
       </div>
     </div>
   );
