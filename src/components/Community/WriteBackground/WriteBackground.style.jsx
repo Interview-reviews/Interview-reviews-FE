@@ -13,4 +13,4 @@ const backgroundStyle = color => css`
   justify-content: center;
 `;
 
-export { backgroundStyle };
+export default backgroundStyle;

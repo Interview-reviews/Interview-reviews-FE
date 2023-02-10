@@ -1,30 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-
 import { useState } from 'react';
 
-const buttonStyle = (color, width) => css`
-  width: ${width}px;
-  height: 35px;
-
-  border-style: none;
-  border-radius: 30px;
-
-  font-weight: 500;
-  font-size: 14px;
-
-  color: white;
-  background: ${color};
-
-  margin: 0.3rem;
-
-  cursor: pointer;
-`;
-
-const buttonContainer = css`
-  display: flex;
-  border: 1px solid brown;
-`;
+import { buttonContainer, buttonStyle } from './SortingButtons.style';
 
 const buttonArray = [
   {
