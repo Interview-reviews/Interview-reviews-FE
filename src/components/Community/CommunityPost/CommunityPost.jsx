@@ -23,9 +23,7 @@ export default function CommunityPost({ img, id, username, career, likes, commen
         comments={comments}
         date={date}
       />
-
       <hr css={{ width: '90%', margin: 'auto', background: '#E5EAEF' }} />
-
       <CommunityBody hashtags={hashtags} title={title} body={body} />
     </div>
   );
