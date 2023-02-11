@@ -1,11 +1,6 @@
 /** @jsxImportSource @emotion/react */
-
+import Career from '../../Career/Career';
 import CommunityDate from '../CommunityDate/CommunityDate';
-
-const careerColors = {
-  경력: '#FFF0A4',
-  신입: '#CAF9FF',
-};
 
 export default function CommunityHeader({ img, username, career, likes, comments, date }) {
   return (
@@ -37,26 +32,11 @@ export default function CommunityHeader({ img, username, career, likes, comments
           }}>
           img
         </div>
-
         <div css={{ padding: '0.8em 0.8em', /* border: '1px solid pink' */ alignItems: 'center' }}>
           {username}
           <CommunityDate date={date} />
         </div>
-
-        <div
-          css={{
-            display: 'flex',
-            width: '30px',
-            height: '20px',
-            justifyContent: 'center',
-            alignItems: 'center',
-            padding: '4px 12px',
-            borderRadius: '6px',
-            background: careerColors[career],
-            fontSize: '12px',
-          }}>
-          {career}
-        </div>
+        <Career career={career} />;
       </div>
 
       {/* 좋아요와 댓글 수  */}
@@ -64,7 +44,6 @@ export default function CommunityHeader({ img, username, career, likes, comments
         <div
           css={{
             width: '17%',
-            // border: '1px solid red',
             display: 'flex',
             justifyContent: 'space-around',
           }}>

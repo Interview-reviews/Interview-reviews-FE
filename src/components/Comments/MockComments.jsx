@@ -1,9 +1,3 @@
-// nickname
-// contetn
-// img
-// time
-// 대댓글 버튼
-
 export default [
   { nickname: '닉네임1', content: '오늘은 정말 좋군요!', img: 'img1', time: '2023.05.24' },
   { nickname: '닉네임2', content: '대댓글로써 완벽해요!!', img: 'img2', time: '2022.01.24' },

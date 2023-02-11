@@ -26,9 +26,3 @@ export default function Comment({ comment }) {
     </div>
   );
 }
-
-// nickname
-// contetn
-// img
-// time
-// 대댓글 버튼

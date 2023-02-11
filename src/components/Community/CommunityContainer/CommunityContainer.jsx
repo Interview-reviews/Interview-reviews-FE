@@ -12,10 +12,10 @@ export default function CommunityContainer() {
       <div css={containerStyle}>
         <CommunityMainHeader />
         <PopularPosts />
+        <CommunityPosts />
         <Link css={{ margin: '3rem' }} to="/CommunityDetail">
           상세 페이지로
         </Link>
-        <CommunityPosts />
       </div>
     </div>
   );

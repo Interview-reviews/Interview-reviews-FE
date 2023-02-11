@@ -12,7 +12,7 @@ const headerContainer = css`
 
 const mainInfoStyle = css`
   display: flex;
-  width: 200px;
+  width: 250px;
   height: 5vh;
 
   justify-content: space-between;
