@@ -36,7 +36,7 @@ export default function CommunityHeader({ img, username, career, likes, comments
           {username}
           <CommunityDate date={date} />
         </div>
-        <Career career={career} />;
+        <Career career={career} />
       </div>
 
       {/* 좋아요와 댓글 수  */}
