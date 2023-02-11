@@ -36,7 +36,7 @@ const headerStyle = css`
   font-weight: 500;
   font-size: 14px;
 
-  width: 12vw;
+  width: 120px;
 
   display: flex;
   justify-content: space-between;
