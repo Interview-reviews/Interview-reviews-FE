@@ -4,7 +4,7 @@ import {
   headerContainer,
   mainInfoStyle,
   imgStyle,
-  conetentStyle,
+  contentStyle,
   reactionContainerStyle,
   hrStyle,
 } from './DetailHeader.style';
@@ -22,10 +22,7 @@ export default function DetailHeader() {
         <div>{career}</div>
         <div style={{ color: '#9D9D9D' }}>{date}</div>
       </div>
-      <div css={conetentStyle}>
-        {body}ㅁ
-        ㄴ아ㅓ로마ㅣㄴ오라ㅓㅣㅁ노아ㅓㅣ롬니ㅏ오리ㅏㅁ농라ㅗㄴ아로민오리ㅏㅁㄴ오리ㅏ먼오리ㅏㅁ너오라ㅣㅓ몬이ㅏ러ㅚ안로마ㅣㄴ어ㅗ리ㅏㅓ모
-      </div>
+      <div css={contentStyle}>{body}</div>
       <Hashtags hashtags={hashtags} />
       <hr css={hrStyle} />
       <div css={reactionContainerStyle}>

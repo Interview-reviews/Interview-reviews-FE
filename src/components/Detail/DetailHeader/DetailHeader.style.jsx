@@ -9,9 +9,10 @@ const headerContainer = css`
 
   margin-top: 5vh;
 `;
+
 const mainInfoStyle = css`
   display: flex;
-  width: 300px;
+  width: 200px;
   height: 5vh;
 
   justify-content: space-between;
@@ -27,9 +28,8 @@ const imgStyle = css`
   line-height: 32px;
 `;
 
-const conetentStyle = css`
-  width: 100%;
-  border: 1px solid black;
+const contentStyle = css`
+  width: 80%;
   margin: 2.5vh 0;
 `;
 
@@ -51,4 +51,4 @@ const hrStyle = css`
 
   margin: 2.5vh 0;
 `;
-export { headerContainer, mainInfoStyle, imgStyle, conetentStyle, reactionContainerStyle, hrStyle };
+export { headerContainer, mainInfoStyle, imgStyle, contentStyle, reactionContainerStyle, hrStyle };
