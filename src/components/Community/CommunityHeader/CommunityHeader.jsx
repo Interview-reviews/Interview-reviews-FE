@@ -6,7 +6,6 @@ export default function CommunityHeader({ img, username, career, likes, comments
   return (
     <div
       css={{
-        // border: '1px solid blue',
         display: 'flex',
         width: '90%',
         height: '35%',
@@ -17,7 +16,6 @@ export default function CommunityHeader({ img, username, career, likes, comments
       }}>
       <div
         css={{
-          // border: '1px solid black',
           display: 'flex',
           alignItems: 'center',
         }}>
@@ -38,7 +36,7 @@ export default function CommunityHeader({ img, username, career, likes, comments
           {username}
           <CommunityDate date={date} />
         </div>
-        <Career career={career} />;
+        <Career career={career} />
       </div>
 
       {/* 좋아요와 댓글 수  */}
@@ -46,7 +44,6 @@ export default function CommunityHeader({ img, username, career, likes, comments
         <div
           css={{
             width: '17%',
-            // border: '1px solid red',
             display: 'flex',
             justifyContent: 'space-around',
           }}>

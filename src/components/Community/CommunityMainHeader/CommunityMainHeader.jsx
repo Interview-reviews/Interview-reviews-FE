@@ -14,7 +14,7 @@ export default function CommunityMainHeader() {
         <SearchInput placeholder="검색어를 입력하세요." />
         <div css={divButtonStyle}>
           <Link to="/Community/Write" css={linkStyle}>
-            글 올리기
+            글 작성
           </Link>
         </div>
       </div>

@@ -1,9 +1,11 @@
 /** @jsxImportSource @emotion/react */
 
+import HashtagStyle from './Hashtag.style';
+
 export default function Hashtags({ hashtags }) {
   return (
     <>
-      <div css={{ color: '#5C8AFF', fontWeight: '400', fontSize: '14px' }}>
+      <div css={HashtagStyle}>
         {hashtags.map((hashtag, index) => (
           <span key={index}>{`#${hashtag}`}</span>
         ))}
