@@ -47,7 +47,7 @@ IT 관련 직무의 면접 후기에 대한 정보를 담고 있습니다. 사�
 #### 프론트엔드
 
 - React
-- Styled-Componets
+- Emotion
 
 #### 백엔드
 
@@ -59,9 +59,10 @@ IT 관련 직무의 면접 후기에 대한 정보를 담고 있습니다. 사�
 
   <br>
 
-### 📌 다음과 같은 컨벤션을 사용해요.
+### 📌 프로젝트에 대한 더 많은 정보는 아래에서 확인할 수 있어요.
 
-- [Angular Commit Convention](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit)
+- [프로젝트의 WIKI](https://github.com/Interview-reviews/Interview-reviews-FE/wiki)
+- 프로젝트의 설명, 목적, 사용 중인 스택과 컨벤션에 대해 확인할 수 있어요.
 
 <br>
 
@@ -84,6 +85,5 @@ IT 관련 직무의 면접 후기에 대한 정보를 담고 있습니다. 사�
 <br>
 
 - [윤수현 개발 기록](./SoohyunReadme.md)
-- [김성민 개발 기록](./SeongMinReadme.md)
 
 <br>
