@@ -1,6 +1,7 @@
 /* eslint-disable */
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from '@emotion/react';
+import { checkLogin, getLogin } from '../API/LoginAPI';
 import MainSearch from '../components/Main/MainSearch';
 import ReviewBox from '../components/Main/ReviewBox';
 import Nav from '../components/Nav';
@@ -28,7 +29,9 @@ const reviewContainer = css`
 
 export default function Main() {
   const reviewInfo = JSON.parse(localStorage.getItem('reviewInfo'));
-  console.log(reviewInfo);
+
+  checkLogin();
+  getLogin();
 
   return (
     <>
@@ -39,7 +42,9 @@ export default function Main() {
           <p css={popularTitle}>많이 본 후기글</p>
         </div>
         <div css={popularContainer}>
-          {reviewInfo === null ? '' : reviewInfo.map((review, idx) => (idx < 4 ? <RecentReview info={review} /> : ''))}
+          {reviewInfo === undefined
+            ? ''
+            : reviewInfo.map((review, idx) => (idx < 4 ? <RecentReview info={review} /> : ''))}
         </div>
       </section>
       <section>
@@ -47,7 +52,9 @@ export default function Main() {
           <p css={popularTitle}>면접 후기</p>
         </div>
         <div css={reviewContainer}>
-          {reviewInfo === null ? '' : reviewInfo.map((review, idx) => (idx < 10 ? <ReviewBox info={review} /> : ''))}
+          {reviewInfo === undefined
+            ? ''
+            : reviewInfo.map((review, idx) => (idx < 10 ? <ReviewBox info={review} /> : ''))}
         </div>
       </section>
       <section>{/* 성민님 작성하실 부분 */}</section>

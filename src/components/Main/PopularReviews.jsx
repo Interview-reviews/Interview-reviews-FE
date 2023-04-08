@@ -22,10 +22,7 @@ const recentTitle = css`
 export default function PopularReviews() {
   return (
     <>
-      <div css={recentTitleContainer}>
-        <p css={newText}>New</p>
-        <p css={recentTitle}>따끈한 후기</p>
-      </div>
+     
     </>
   );
 }

@@ -2,9 +2,8 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from '@emotion/react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import { useState } from 'react';
-import { checkLogin } from '../../API/LoginAPI';
+import { checkLogin, getLogin } from '../../API/LoginAPI';
 import Nav from '../../components/Nav';
 
 const loginContainer = css`
@@ -72,9 +71,11 @@ export default function Login() {
     setPassword(e.target.value);
   };
 
-  console.log(id, password);
+  checkLogin();
+  getLogin();
 
   const attemptLogin = async () => {
+    getLogin();
     const info = { UserName: id, Password: password };
     const isAllow = await checkLogin(info);
     if (isAllow) {

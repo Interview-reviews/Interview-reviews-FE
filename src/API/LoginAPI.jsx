@@ -8,28 +8,29 @@ import axios from 'axios';
  * @returns {JWT Token}
  */
 
-export async function checkLogin(formData) {
-  //   try {
-  //     const res = await axios.get(`주소`).then((response) => {
-  //       console.log("응답 확인", response);
-  //       const token = response.headers.authorization;
-  //       window.localStorage.setItem("token", token);
-  //     });
-  //     console.log(res);
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-
-  const response = await fetch(``, {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
-    body: formData,
-  });
-  if (!response.ok) {
-    throw new Error('로그인 조회에 실패하였습니다.');
+export async function checkLogin() {
+  try {
+    const res = await axios.get(`http://3.39.36.242:8080/api/v1/member/test`).then(response => {
+      console.log('응답 확인', response, response.data);
+    });
+    console.log(res);
+  } catch (e) {
+    console.error(e);
   }
-  const token = response.headers.authorization;
-  window.localStorage.setItem('token', token);
+}
+
+export async function getLogin() {
+  const response = await fetch(`http://3.39.36.242:8080/api/v1/member/test`, {
+    method: 'GET',
+    // headers: {
+    //   'Content-Type': 'application/json',
+    // },
+  });
+  console.log(response);
+  if (!response.ok) {
+    throw new Error('에러');
+  }
   const body = await response.json();
+  console.log(body);
   return body;
 }

@@ -3,7 +3,7 @@
 import { jsx, css } from '@emotion/react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { checkId, checkNickname, sendEmail } from '../../API/SignUpAPI';
+import { checkEmailAPI, checkNickname, checkTest, joinAPI, sendEmail, signUp } from '../../API/SignUpAPI';
 import Nav from '../../components/Nav';
 import EssentialMark from '../../constant/essentialMark';
 
@@ -117,7 +117,6 @@ const nextButton = css`
 
 export default function SignUp(info) {
   const [userName, setUserName] = useState(''); // 아이디
-  //   const [nameCheck, setNameCheck] = useState("");
   const [nickname, setNickname] = useState(''); // 닉네임
   const [password, setPassword] = useState('');
   const [isMatch, setIsMatch] = useState(true);
@@ -130,6 +129,9 @@ export default function SignUp(info) {
   const [allowNickname, setAllowNickname] = useState('');
   const [allowId, setAllowId] = useState('');
   const [checkEmail, setCheckEmail] = useState('');
+  const [checkCode, setCheckCode] = useState('');
+  const [userEmailCode, setUserEmailCode] = useState('');
+  const [allowEmail, setAllowEmail] = useState(false);
 
   const buildSignUp = () => {
     // 이전 화면으로 돌아올 경우 입력 정보 유지
@@ -156,20 +158,23 @@ export default function SignUp(info) {
   const onSexHandler = e => {
     setGender(e.currentTarget.value);
   };
+  console.log(nickname);
 
   const isAllowNickname = async e => {
     e.preventDefault();
     const isAllow = await checkNickname(nickname);
     if (isAllow) {
+      alert('사용할 수 있는 닉네임입니다.');
       setAllowNickname(true);
     } else {
+      alert('중복된 닉네임입니다. 다른 닉네임을 입력해주세요.');
       setAllowNickname(false);
     }
   };
 
   const isAllowId = async e => {
     e.preventDefault();
-    const isAllow = await checkId(nickname);
+    const isAllow = checkId(userName);
     if (isAllow) {
       setAllowId(true);
     } else {
@@ -194,20 +199,28 @@ export default function SignUp(info) {
     return pattern.test(value[value.length - 1]);
   };
 
+  // 이메일 인증
   const isAllowEmail = e => {
     const regex = /@/ && /.com/;
     e.preventDefault();
-    if (regex.test(email)) {
-      setCheckEmail(true);
-      const result = sendEmail();
-    } else {
-      setCheckEmail(false);
-    }
+    setCheckCode(checkEmailAPI(email));
+    setCheckEmail(true);
+    // if (regex.test(email)) {
+    //   setCheckEmail(true);
+    //   const result = sendEmail();
+    // } else {
+    //   setCheckEmail(false);
+    // }
   };
 
   const isVaildEmail = e => {
     e.preventDefault();
-    alert('인증되었습니다.');
+    if (checkCode === userEmailCode) {
+      setAllowEmail(true);
+      alert('인증되었습니다.');
+    } else {
+      alert('인증번호가 틀립니다. 다시 확인해주세요.');
+    }
   };
 
   const onBirthHandler = e => {
@@ -224,7 +237,11 @@ export default function SignUp(info) {
   };
 
   const isAllowNext = e => {
-    if (!onSubmitHandler()) e.preventDefault();
+    // checkTest();
+    joinAPI();
+    e.preventDefault();
+    // if (!onSubmitHandler()) e.preventDefault();
+    // signUp();
   };
 
   const onSubmitHandler = e => {
@@ -253,17 +270,17 @@ export default function SignUp(info) {
       return false;
     }
 
-    if (allowNickname !== true) {
+    if (!allowNickname) {
       alert('닉네임을 확인 해주세요.');
       return false;
     }
 
-    if (allowId !== true) {
+    if (!allowId) {
       alert('아이디를 확인 해주세요.');
       return false;
     }
 
-    if (checkEmail !== true) {
+    if (!allowEmail) {
       alert('이메일 확인 해주세요.');
       return false;
     }
@@ -419,7 +436,11 @@ export default function SignUp(info) {
               )}
               {checkEmail && (
                 <div style={{ margin: '10px 0 0 140px' }}>
-                  <input css={signUpInput} placeholder="인증번호를 입력해주세요" />{' '}
+                  <input
+                    css={signUpInput}
+                    onChange={e => setUserEmailCode(e.target.value)}
+                    placeholder="인증번호를 입력해주세요"
+                  />
                   <button css={checkButton} onClick={isVaildEmail}>
                     인증하기
                   </button>
